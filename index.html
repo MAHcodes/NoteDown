@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/css/line-awesome.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Notes App</title>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="search">
+                <input type="text" id="search" placeholder="Search note...">
+                <i class="las la-search"></i>
+            </div>
+            <div class="pinned-container"></div>
+            <div class="other-container">
+                <div class="note-card">
+                    <i class="las la-thumbtack"></i>
+                    <div class="title">
+                        <i class="lar la-sticky-note"></i>
+                        <h3 class="card-title">Untitled Note</h3>
+                    </div>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, temporibus? Lorem ipsum dolor sit amet consectetur.</p>
+                    <div class="info-container">
+                        <div class="tags">
+                            <span class="tag">web</span>
+                            <span class="tag">front-end</span>
+                        </div>
+                        <div class="date-container">
+                            <h6 class="card-date">Today at 17:35</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add">
+                <button id="add">Add Note</button>
+            </div>
+        </aside>
+        <section class="main">
+            <div class="main-header">
+                <div class="main-title">
+                    <i class="las la-sticky-note"></i>
+                    <h1 id="main-title">Untitled Note</h1>
+                </div>
+                <h5 id="main-date">Today</h5>
+            </div>
+            <textarea id="text-input"></textarea>
+            <div class="text-view hidden"></div>
+            <div class="tools-container"></div>
+        </section>
+    </div>
+      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

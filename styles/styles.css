@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@200;400&display=swap');
+
+:root {
+    --white: hsl(0, 0%, 100%);
+    --light-gray: hsl(204, 15%, 94%);
+    --dark-gray: hsl(0, 0%, 85%);
+    --black: hsl(0, 0%, 10%);
+    --main-blue: hsl(210, 79%, 46%);
+    --gray: hsl(0, 0%, 43.5%);
+}
+
+html {
+    font-family: 'Palanquin', sans-serif;
+    font-size: clamp(14px, calc(1vw + 1vh), 18px);
+    color: var(--black);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection {
+    color: white;
+    background: var(--main-blue);
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.hidden {
+    display: none !important;
+}
+
+aside {
+    border-right: .075em solid var(--dark-gray);
+    background-color: var(--light-gray);
+    padding: 1rem;
+    height: auto;
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    width: 20%;
+    overflow: hidden;
+}
+
+.search {
+   position: relative;
+}
+
+#search {
+    width: 100%;
+    font-size: .9rem;
+    padding: .7em .5em .7em calc(30px + 1em);
+    border-radius: .2em;
+    border: none;
+    box-shadow: .1em .1em .5em hsl(0, 0%, 80%);
+}
+
+#search:focus {
+    outline: .1em solid var(--main-blue);
+}
+
+.search > i {
+    position: absolute;
+    top: 50%;
+    font-size: 1.125rem;
+    left: 13px;
+    transform: translateY(-50%) rotateY(180deg);
+    opacity: .55;
+}
+
+.pinned-container,
+.other-container {
+    position: relative;
+    margin: 3em auto;
+    width: 100%;
+}
+
+.other-container {
+    flex-grow: 1;
+}
+
+.pinned-container::before,
+.other-container::before {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    font-size: .85rem;
+    transform: translateY(-100%);
+    z-index: 10;
+}
+
+.pinned-container::before {
+    content: "Pinned notes";
+}
+
+.other-container::before {
+    content: "Other notes";
+}
+
+.note-card {
+    background-color: var(--white);
+    border-radius: .25em;
+    position: relative;
+    padding: 1em;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.note-card:hover {
+    box-shadow: 0 0 15px 0 var(--dark-gray)
+}
+
+.note-card:hover > i {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotateZ(0);
+}
+
+.note-card > i {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 1.25rem;
+    color: var(--gray);
+    z-index: 9;
+    padding: .15em;
+    transition: 300ms;
+    opacity: 0;
+    transform: scale(1.1) translateX(5px) rotateZ(25deg);
+}
+
+.note-card > i:hover {
+    color: var(--black);
+    transform: translateY(-5px) rotateZ(-15deg) scale(1.25);
+}
+
+.note-card > i:active {
+    color: var(--black);
+    transform: translateY(-2px) rotateZ(-20deg) scale(1.175);
+}
+
+.note-card .title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.note-card .title > i {
+    font-size: 1.25rem;
+    margin-right: .25em;
+}
+
+.card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: .5em 0 ;
+}
+
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: .25em;
+}
+
+.info-container .tag {
+   font-size: .7em;
+   background-color:  hsl(210, 79%, 93%);
+   border-radius: 1em;
+   padding: .1em .5em;
+   border: 1px solid var(--main-blue);
+   opacity: .75;
+   transition: opacity 200ms;
+}
+
+.tag:hover {
+    opacity: 1;
+}
+
+#add {
+    width: 100%;
+    background-color: var(--main-blue);
+    color: #FFF;
+    font-size: 1.1rem;
+    padding: .5em 1em; 
+    border: none;
+    font-weight: bold;
+    border-radius: .2em;
+    cursor: pointer;
+}
+
+.main {
+    flex: 4;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.main-title {
+    display: flex;
+    align-items: center;
+}
+
+.main-title i {
+    font-size: 1.5rem;
+    margin-right: .5em;
+}
+
+#main-date,
+.card-date {
+    color: var(--gray);
+}
+
+textarea,
+.text-view {
+    width: 100%;
+    resize: none;
+    flex-grow: 1;
+    border: none;
+    font-size: 1.0125rem;
+    margin-top: 1em;
+}
+
+textarea:focus {
+    border: none;
+    outline: none;
+}
+
+@media only screen and (min-width: 1400px) {
+    aside {
+        flex: 1;
+    }
+}
