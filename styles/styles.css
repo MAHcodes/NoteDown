@@ -57,9 +57,10 @@ aside {
     width: 100%;
     font-size: .9rem;
     padding: .7em .5em .7em calc(30px + 1em);
-    border-radius: .2em;
+    border-radius: .3em;
     border: none;
     box-shadow: .1em .1em .5em hsl(0, 0%, 80%);
+    background-color: #fff;
 }
 
 #search:focus {
@@ -89,11 +90,12 @@ aside {
 .pinned-container::before,
 .other-container::before {
     position: absolute;
-    top: -4px;
+    top: -10px;
     left: 0;
-    font-size: .85rem;
+    font-size: .75rem;
     transform: translateY(-100%);
     z-index: 10;
+    color: var(--gray);
 }
 
 .pinned-container::before {
@@ -111,6 +113,11 @@ aside {
     padding: 1em;
     cursor: pointer;
     transition: 300ms;
+}
+
+.note-card.active {
+    border: 1px solid var(--gray);
+    box-shadow: 0 0 15px 0 var(--dark-gray)
 }
 
 .note-card:hover {
@@ -160,7 +167,7 @@ aside {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin: .5em 0 ;
+    margin: 1em 0 ;
 }
 
 .info-container {
@@ -202,6 +209,7 @@ aside {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    background-color: var(--white);
 }
 
 .main-title {
@@ -217,6 +225,7 @@ aside {
 #main-date,
 .card-date {
     color: var(--gray);
+    font-weight: 400;
 }
 
 textarea,
@@ -227,6 +236,7 @@ textarea,
     border: none;
     font-size: 1.0125rem;
     margin-top: 1em;
+    background-color: var(--white);
 }
 
 textarea:focus {
@@ -234,7 +244,7 @@ textarea:focus {
     outline: none;
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1200px) {
     aside {
         flex: 1;
     }
