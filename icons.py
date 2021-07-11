@@ -1,11 +1,3 @@
-# import os
-# arr = [];
-#
-# for file in os.listdir("./1.3.0/svg/"):
-#     name = file.split(".")
-#     arr.append(name[0])
-# print(arr)
-
 import requests
 from bs4 import BeautifulSoup
 
