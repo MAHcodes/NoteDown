@@ -34,7 +34,7 @@ html {
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 aside {
@@ -112,7 +112,7 @@ aside {
     position: relative;
     padding: 1em;
     cursor: pointer;
-    transition: 300ms;
+    transition: 500ms;
 }
 
 .note-card.active {
@@ -171,7 +171,7 @@ aside {
 }
 
 .info-container {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     padding-top: .25em;
@@ -185,6 +185,10 @@ aside {
    border: 1px solid var(--main-blue);
    opacity: .75;
    transition: opacity 200ms;
+}
+
+.note-card:hover .info-container {
+    display: flex;
 }
 
 .tag:hover {
@@ -201,6 +205,23 @@ aside {
     font-weight: bold;
     border-radius: .2em;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 500ms;
+}
+
+#add:hover,
+#add:focus {
+    background-color: hsl(210, 79%, 53%);
+    outline: none;
+}
+
+#add span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 650ms linear;
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
 .main {
@@ -210,22 +231,56 @@ aside {
     flex-direction: column;
     padding: 1rem;
     background-color: var(--white);
+    position: relative;
 }
 
-.main-title {
+#marked {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: .5em 1em;
+    background-color: transparent;
+    border: 1px solid var(--main-blue);
+    color: var(--main-blue);
+    border-radius: .3em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+#marked:hover,
+#marked:focus {
+    outline: none;
+    background-color: hsl(210, 79%, 46%, .075);
+}
+
+#marked:active {
+    background-color: hsl(210, 79%, 46%, .2);
+    color: hsl(210, 79%, 40%);
+}
+
+#marked span {
+    font-size: 1.125rem;
+    margin-right: .5em;
+}
+
+.main-header {
     display: flex;
     align-items: center;
 }
 
-.main-title i {
-    font-size: 1.5rem;
-    margin-right: .5em;
+.main-header i {
+    font-size: 1.75rem;
+    margin: 0 .75em;
 }
 
 #main-date,
 .card-date {
     color: var(--gray);
     font-weight: 400;
+    line-height: .75;
 }
 
 textarea,
@@ -242,6 +297,13 @@ textarea,
 textarea:focus {
     border: none;
     outline: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
