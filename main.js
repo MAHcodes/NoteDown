@@ -6,13 +6,16 @@ const otherContainer = document.querySelector(".other-container");
 const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
-window.addEventListener("load", updateEvents);
+window.onload = () => updateEvents();
 
 const markedBtn = document.getElementById("marked");
-markedBtn.addEventListener("click", toggleView);
+markedBtn.onclick = () => toggleView();
 
 const searchInput = document.getElementById("search");
-searchInput.addEventListener("input", filterNotes);
+searchInput.oninput = () => filterNotes();
+
+const inputTitle = document.getElementById("input-title");
+inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
 
 function updateEvents() {
     const pinBtns = document.querySelectorAll(".pin-toggle");
@@ -25,6 +28,8 @@ function updateEvents() {
 
     if (!pinnedContainer.classList.contains("hidden") && (!otherContainer.classList.contains("hidden"))) {
         pinnedContainer.style.flexGrow = 0;
+    } else {
+        pinnedContainer.style.flexGrow = 1;
     };
 };
 
@@ -92,6 +97,7 @@ function createNewNote() {
     otherContainer.insertAdjacentHTML("afterbegin", noteCardHtml);
 
     updateEvents();
+    otherContainer.firstElementChild.click();
 };
 
 function createRipple(e) {
