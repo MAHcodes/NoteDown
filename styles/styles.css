@@ -33,10 +33,6 @@ html {
     align-items: stretch;
 }
 
-.hidden {
-    display: none;
-}
-
 aside {
     border-right: .075em solid var(--dark-gray);
     background-color: var(--light-gray);
@@ -93,11 +89,8 @@ aside {
 .pinned-container,
 .other-container {
     position: relative;
-    margin: 3em auto;
+    margin-top: 3.5em;
     width: 100%;
-}
-
-.other-container {
     flex-grow: 1;
 }
 
@@ -155,14 +148,16 @@ aside {
     transform: scale(1.1) translateX(5px) rotateZ(25deg);
 }
 
-.note-card > i:hover {
-    color: var(--black);
-    transform: translateY(-5px) rotateZ(-15deg) scale(1.25);
-}
-
 .note-card > i:active {
     color: var(--black);
     transform: translateY(-2px) rotateZ(-20deg) scale(1.175);
+}
+
+.note-card > i:hover,
+.note-card.active > i.pin {
+    color: var(--black);
+    transform: translateY(-5px) rotateZ(-15deg) scale(1.25);
+    opacity: 1;
 }
 
 .note-card .title {
@@ -309,6 +304,10 @@ textarea,
 textarea:focus {
     border: none;
     outline: none;
+}
+
+.hidden {
+    display: none;
 }
 
 @keyframes ripple {

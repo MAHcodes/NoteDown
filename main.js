@@ -3,6 +3,9 @@ import {icons as icons} from "./icons.js";
 const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
+const pinBtn = document.getElementById("pin");
+pinBtn.addEventListener("click", pinNote);
+
 const markedBtn = document.getElementById("marked");
 markedBtn.addEventListener("click", toggleView);
 
@@ -13,6 +16,31 @@ const noteCards = document.querySelectorAll(".note-card");
 noteCards.forEach(card => {
     card.addEventListener("click", openNote);
 });
+
+function pinNote(e) {
+    const pinnedContainer = document.querySelector(".pinned-container");
+    const otherContainer = document.querySelector(".other-container");
+    const note = this.parentElement;
+    
+    if (pinBtn.classList.contains("pin")) {
+        pinBtn.classList.remove("pin");
+        otherContainer.insertAdjacentElement("afterbegin", note); 
+    } else {
+        pinBtn.classList.add("pin");
+        pinnedContainer.insertAdjacentElement("afterbegin", note); 
+    };
+
+    if (pinnedContainer.childElementCount === 0) {
+        pinnedContainer.classList.add('hidden');
+    } else {
+        pinnedContainer.classList.remove("hidden");
+    };
+    if (otherContainer.childElementCount === 0) {
+        otherContainer.classList.add("hidden");
+    } else {
+        otherContainer.classList.remove("hidden");
+    };
+};
 
 function openNote(e) {
     noteCards.forEach(card => card.classList.remove("active"));
@@ -53,7 +81,6 @@ function toggleView() {
         markedBtnIcon.classList.remove("la-eye");
         markedBtnIcon.classList.add("la-edit");
         markText.innerText = "Edit";
-
         
         txtView.innerHTML = marked(txtArea.value);
         txtView.classList.remove("hidden");
