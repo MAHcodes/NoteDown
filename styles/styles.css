@@ -33,6 +33,10 @@ html {
     align-items: stretch;
 }
 
+.hidden {
+    display: none;
+}
+
 aside {
     border-right: .075em solid var(--dark-gray);
     background-color: var(--light-gray);
@@ -120,6 +124,10 @@ aside {
     padding: 1em;
     cursor: pointer;
     transition: 500ms;
+}
+
+.note-card + .note-card {
+    margin-top: 2rem;
 }
 
 .note-card.active {
@@ -213,6 +221,7 @@ aside {
     font-weight: bold;
     position: relative;
     overflow: hidden;
+    margin-top: 1rem;
 }
 
 #add, #marked {
@@ -279,9 +288,10 @@ aside {
     position: relative;
 }
 
-.main-header > i {
+.main-header > span i {
     font-size: 1.75rem;
     margin: 0 .75em;
+    position: relative;
 }
 
 #main-date,
@@ -304,10 +314,6 @@ textarea,
 textarea:focus {
     border: none;
     outline: none;
-}
-
-.hidden {
-    display: none;
 }
 
 @keyframes ripple {
