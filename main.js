@@ -6,6 +6,18 @@ addBtn.addEventListener("click", createRipple);
 const markedBtn = document.getElementById("marked");
 markedBtn.addEventListener("click", toggleView);
 
+const searchInput = document.getElementById("search");
+searchInput.addEventListener("input", filterNotes);
+
+const noteCards = document.querySelectorAll(".note-card");
+noteCards.forEach(card => {
+    card.addEventListener("click", openNote);
+});
+
+function openNote(e) {
+    noteCards.forEach(card => card.classList.remove("active"));
+    this.classList.add("active");
+};
 
 function changeIcon() {
     icons.forEach(icon => {
@@ -34,7 +46,37 @@ function createRipple(e) {
 function toggleView() {
     const txtArea = document.getElementById("text-input");
     const txtView = document.querySelector(".text-view");
+    const markedBtnIcon = document.querySelector("#marked i");
+    const markText = document.querySelector(".mark-text");
 
-    console.log(txtView)
+    if (txtView.classList.contains("hidden")) {
+        markedBtnIcon.classList.remove("la-eye");
+        markedBtnIcon.classList.add("la-edit");
+        markText.innerText = "Edit";
 
-}
+        
+        txtView.innerHTML = marked(txtArea.value);
+        txtView.classList.remove("hidden");
+        txtArea.classList.add("hidden")
+    } else {
+        markedBtnIcon.classList.add("la-eye");
+        markedBtnIcon.classList.remove("la-edit")
+        txtView.classList.add("hidden");
+        txtArea.classList.remove("hidden");
+        markText.innerText = "MarkDown";
+    };
+};
+
+function filterNotes() {
+    const timesIco = document.getElementById("times");
+    timesIco.addEventListener("click", () => {
+        searchInput.value = "";
+        timesIco.classList.add("hidden")});
+    if (searchInput.value !== "") {
+        timesIco.classList.remove("hidden");
+        searchInput.style.padding = ".7em calc(30px + 1em) .7em calc(30px + 1em)";
+    } else {
+        timesIco.classList.add("hidden");
+        searchInput.style.padding = ".7em 1em .7em calc(30px + 1em)";
+    };
+};

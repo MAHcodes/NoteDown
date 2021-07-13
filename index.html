@@ -15,6 +15,7 @@
             <div class="search">
                 <input type="text" id="search" placeholder="Search note...">
                 <i class="las la-search"></i>
+                <i class="las la-times hidden" id="times"></i>
             </div>
             <div class="pinned-container"></div>
             <div class="other-container">
@@ -41,8 +42,8 @@
             </div>
         </aside>
         <section class="main">
-            <button id="marked"><span><i class="las la-eye"></i></span>MarkDown</button>
             <div class="main-header">
+            <button id="marked"><i class="las la-eye"></i><span class="mark-text">MarkDown</span></button>
                 <i class="las la-sticky-note"></i>
                 <div class="main-title">
                     <h1 id="main-title">Untitled Note</h1>

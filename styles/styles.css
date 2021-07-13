@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 :root {
     --white: hsl(0, 0%, 100%);
@@ -10,7 +10,7 @@
 }
 
 html {
-    font-family: 'Palanquin', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(14px, calc(1vw + 1vh), 18px);
     color: var(--black);
 }
@@ -56,7 +56,7 @@ aside {
 #search {
     width: 100%;
     font-size: .9rem;
-    padding: .7em .5em .7em calc(30px + 1em);
+    padding: .7em 1em .7em calc(30px + 1em);
     border-radius: .3em;
     border: none;
     box-shadow: .1em .1em .5em hsl(0, 0%, 80%);
@@ -71,9 +71,23 @@ aside {
     position: absolute;
     top: 50%;
     font-size: 1.125rem;
-    left: 13px;
     transform: translateY(-50%) rotateY(180deg);
     opacity: .55;
+}
+.search > i:first-of-type {
+    left: 13px;
+}
+
+.search > i:last-of-type {
+    right: 13px;
+    cursor: pointer;
+    padding: .25em;
+    border-radius: 50%;
+}
+
+.search > i:last-of-type:hover {
+    background-color: var(--light-gray);
+    opacity: .7;
 }
 
 .pinned-container,
@@ -117,7 +131,6 @@ aside {
 
 .note-card.active {
     border: 1px solid var(--gray);
-    box-shadow: 0 0 15px 0 var(--dark-gray)
 }
 
 .note-card:hover {
@@ -160,7 +173,7 @@ aside {
 
 .note-card .title > i {
     font-size: 1.25rem;
-    margin-right: .25em;
+    margin-right: .4em;
 }
 
 .card-text {
@@ -175,19 +188,23 @@ aside {
     align-items: center;
     justify-content: space-between;
     padding-top: .25em;
+    transform: translateY(40%);
+    opacity: 0;
+    animation: show 300ms ease-in-out forwards;
 }
 
 .info-container .tag {
    font-size: .7em;
-   background-color:  hsl(210, 79%, 93%);
+   background-color:  hsla(210, 79%, 46%, 0.15);
    border-radius: 1em;
    padding: .1em .5em;
-   border: 1px solid var(--main-blue);
+   border: 1px solid var(--gray);
    opacity: .75;
    transition: opacity 200ms;
 }
 
-.note-card:hover .info-container {
+.note-card:hover .info-container,
+.note-card.active .info-container {
     display: flex;
 }
 
@@ -197,22 +214,27 @@ aside {
 
 #add {
     width: 100%;
-    background-color: var(--main-blue);
-    color: #FFF;
     font-size: 1.1rem;
-    padding: .5em 1em; 
-    border: none;
     font-weight: bold;
-    border-radius: .2em;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: background 500ms;
+}
+
+#add, #marked {
+    background-color: var(--main-blue);
+    color: #FFF;
+    border: none;
+    padding: .5em 1em; 
+    border-radius: .3em;
+    cursor: pointer;
+    transition: background 300ms;
 }
 
 #add:hover,
-#add:focus {
-    background-color: hsl(210, 79%, 53%);
+#add:focus,
+#marked:hover,
+#marked:focus {
+    background-color: hsl(210, 79%, 40%);
     outline: none;
 }
 
@@ -236,32 +258,22 @@ aside {
 
 #marked {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: .5em 1em;
-    background-color: transparent;
-    border: 1px solid var(--main-blue);
-    color: var(--main-blue);
-    border-radius: .3em;
-    cursor: pointer;
+    top: 50%;
+    right: 0rem;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 20;
-}
-
-#marked:hover,
-#marked:focus {
-    outline: none;
-    background-color: hsl(210, 79%, 46%, .075);
+    transform: translateY(-50%);
+    font-size: .85rem;
+    line-height: 1  ;
 }
 
 #marked:active {
-    background-color: hsl(210, 79%, 46%, .2);
-    color: hsl(210, 79%, 40%);
+    background-color: hsl(210, 79%, 50%);
 }
 
-#marked span {
+#marked > i {
     font-size: 1.125rem;
     margin-right: .5em;
 }
@@ -269,9 +281,10 @@ aside {
 .main-header {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
-.main-header i {
+.main-header > i {
     font-size: 1.75rem;
     margin: 0 .75em;
 }
@@ -280,7 +293,6 @@ aside {
 .card-date {
     color: var(--gray);
     font-weight: 400;
-    line-height: .75;
 }
 
 textarea,
@@ -290,8 +302,8 @@ textarea,
     flex-grow: 1;
     border: none;
     font-size: 1.0125rem;
-    margin-top: 1em;
     background-color: var(--white);
+    padding: 1.5rem;
 }
 
 textarea:focus {
@@ -310,4 +322,11 @@ textarea:focus {
     aside {
         flex: 1;
     }
+}
+
+@keyframes show {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    } 
 }
