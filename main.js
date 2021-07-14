@@ -7,6 +7,7 @@ const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
 window.onload = () => updateEvents();
+window.onload = () => changeIcon();
 
 const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
@@ -16,6 +17,7 @@ searchInput.oninput = () => filterNotes();
 
 const inputTitle = document.getElementById("input-title");
 inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
+
 
 function updateEvents() {
     const pinBtns = document.querySelectorAll(".pin-toggle");
@@ -65,11 +67,18 @@ function openNote(e) {
 };
 
 function changeIcon() {
+    const allIconsContainer = document.getElementById("all-icons");
+    const iconTitle = document.querySelector("#icon-btn > i");
     icons.forEach(icon => {
         const ico = document.createElement("i");
+        ico.addEventListener("click", (e) => {
+            iconTitle.classList = [];
+            iconTitle.classList.add(e.target.classList[0]);
+            iconTitle.classList.add(e.target.classList[1]);
+        });
         ico.classList.add(icon[0]);
         ico.classList.add(icon[1]);
-        document.body.appendChild(ico);
+        allIconsContainer.appendChild(ico);
     });
 };
 

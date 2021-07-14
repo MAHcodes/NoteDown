@@ -278,7 +278,81 @@ aside {
     background-color: hsl(210, 79%, 50%);
 }
 
-#marked > i {
+#icon-btn {
+    padding: .5em;
+    border: none;
+    background-color: transparent;
+    margin-right: .5em;
+    display: block;
+    position: relative;
+}
+
+#icon-btn:focus {
+    outline: none;
+}
+
+#icon-btn:hover i,
+#icon-btn:focus i {
+    transform: scale(1.125);
+}
+
+#all-icons {
+    width: 25rem;
+    height: 25rem;
+    padding: 1rem;
+    background-color: var(--white);
+    position: absolute;
+    border: 1px solid var(--dark-gray);
+    box-shadow: .3em .3em 2em rgba(0, 0, 0, 0.15);
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    border-radius: .3rem;
+    display: none;
+    overflow-y: auto;
+}
+
+#all-icons i {
+    cursor: pointer;
+    padding: .15em;
+    color: var(--black);
+    border-radius: 50%;
+    margin: .1em;
+    opacity: .75;
+    transition: 250ms;
+}
+
+#all-icons i:hover {
+    transform: scale(1.25);
+    background-color: var(--light-gray);
+    opacity: 1;
+}
+
+#all-icons::before {
+    content: "";
+    border: 1rem solid;
+    border-color: transparent transparent var(--white);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+#icon-btn:hover #all-icons,
+#icon-btn:focus #all-icons {
+    display: block;
+}
+
+#icon-btn {
+    font-size: 1.8rem;
+}
+
+#icon-btn > i {
+    transition: 250ms;
+    cursor: pointer;
+}
+
+#marked i {
     font-size: 1.125rem;
     margin-right: .5em;
 }
@@ -286,12 +360,6 @@ aside {
 .main-header {
     display: flex;
     align-items: center;
-    position: relative;
-}
-
-.main-header > span i {
-    font-size: 1.75rem;
-    margin: 0 .75em;
     position: relative;
 }
 
