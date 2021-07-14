@@ -19,6 +19,6 @@ This app is still under development stages. You can try the [Live Demo](https://
 ---
 
 ## Contact Me:
-[Twitter](https://twitter.com/MhmdAliHsen)  
+[![Follow me](https://img.shields.io/twitter/follow/MhmdAliHsen.svg?style=for-the-badge)](https://twitter.com/MhmdAliHsen)
 [Email](mailto:mhmdalihsen102@gmail.com)
 
