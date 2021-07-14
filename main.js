@@ -6,8 +6,8 @@ const otherContainer = document.querySelector(".other-container");
 const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
-window.onload = () => updateEvents();
 window.onload = () => changeIcon();
+updateEvents();
 
 const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
