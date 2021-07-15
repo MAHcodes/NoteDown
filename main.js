@@ -3,11 +3,17 @@ import {icons as icons} from "./icons.js";
 const pinnedContainer = document.querySelector(".pinned-container");
 const otherContainer = document.querySelector(".other-container");
 
+const textArea = document.querySelector("#text-input");
+const inputTitle = document.querySelector("#input-title");
+
 const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
-window.onload = () => updateEvents();
-window.onload = () => changeIcon();
+var countId = 0;
+
+
+window.onload = () => createNewNote();
+// updateEvents();
 
 const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
@@ -15,9 +21,7 @@ markedBtn.onclick = () => toggleView();
 const searchInput = document.getElementById("search");
 searchInput.oninput = () => filterNotes();
 
-const inputTitle = document.getElementById("input-title");
 inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
-
 
 function updateEvents() {
     const pinBtns = document.querySelectorAll(".pin-toggle");
@@ -35,10 +39,12 @@ function updateEvents() {
     };
 };
 
+
+
+
 function pinNote(e) {
     const note = this.parentElement;
     const pinBtn = this;
-    
     if (pinBtn.classList.contains("pin")) {
         pinBtn.classList.remove("pin");
         otherContainer.insertAdjacentElement("afterbegin", note); 
@@ -61,31 +67,29 @@ function pinNote(e) {
 };
 
 function openNote(e) {
+    console.log(true);
     const noteCards = document.querySelectorAll(".note-card");
     noteCards.forEach(card => card.classList.remove("active"));
     this.classList.add("active");
+
+    notesTexts[this.id] == undefined ? textArea.value = "" : textArea.value = notesTexts[this.id];
+    notesTitle[this.id] == undefined ? inputTitle.value = "Untitled Note" : inputTitle.value = notesTitle[this.id];
 };
 
+
+
 function changeIcon() {
-    const allIconsContainer = document.getElementById("all-icons");
-    const iconTitle = document.querySelector("#icon-btn > i");
     icons.forEach(icon => {
         const ico = document.createElement("i");
-        ico.addEventListener("click", (e) => {
-            iconTitle.classList = [];
-            iconTitle.classList.add(e.target.classList[0]);
-            iconTitle.classList.add(e.target.classList[1]);
-        });
         ico.classList.add(icon[0]);
         ico.classList.add(icon[1]);
-        allIconsContainer.appendChild(ico);
+        document.body.appendChild(ico);
     });
 };
 
 function createNewNote() {
-    const currentDate = new Date();
-    const currentTime = `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${currentDate.getHours()}:${currentDate.getMinutes()}`
-    const noteCardHtml = `<div class="note-card">
+    const currentTime = getCurrentTime();
+    const noteCardHtml = `<div class="note-card" id=${countId++}>
                             <i class="las la-thumbtack pin-toggle"></i>
                             <div class="title">
                                 <i class="lar la-sticky-note"></i>
@@ -104,7 +108,6 @@ function createNewNote() {
 
     otherContainer.classList.remove("hidden");
     otherContainer.insertAdjacentHTML("afterbegin", noteCardHtml);
-
     updateEvents();
     otherContainer.firstElementChild.click();
 };

@@ -10,6 +10,8 @@
     <title>NoteDown</title>
 </head>
 <body>
+    <script type="module" src="/main.js"></script>
+    <script src="savingFunctions.js"></script>
     <div class="container">
         <aside>
             <div class="search">
@@ -19,22 +21,6 @@
             </div>
             <div class="pinned-container hidden"></div>
             <div class="other-container">
-                <div class="note-card">
-                    <i class="las la-thumbtack pin-toggle"></i>
-                    <div class="title">
-                        <i class="lar la-sticky-note"></i>
-                        <h3 class="card-title">Untitd Note</h3>
-                    </div>
-                    <p class="card-text"></p>
-                    <div class="info-container">
-                        <div class="tags">
-                            <span class="tag">web development</span>
-                        </div>
-                        <div class="date-container">
-                            <h6 class="card-date">Today at 17:35</h6>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="add">
                 <button id="add">Add Note</button>
@@ -43,18 +29,18 @@
         <section class="main">
             <div class="main-header">
             <button id="marked"><i class="las la-eye"></i><span class="mark-text">MarkDown</span></button>
-                <button id="icon-btn"><i class="las la-sticky-note"></i><div id="all-icons"></div></button>
+                <span><i class="las la-sticky-note"></i></span>
                 <div class="main-title">
-                    <input type="text" id="input-title" value="Untitled Text">
+                    <input type="text" id="input-title" value="Untitled Note"  onchange="saveNote()">
                     <h5 id="main-date">Today</h5>
                 </div>
             </div>
-            <textarea id="text-input"></textarea>
+            <textarea id="text-input" onchange="saveNote()"></textarea>
             <div class="text-view hidden"></div>
             <div class="tools-container"></div>
         </section>
     </div>
       <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="./main.js"></script>
+    
 </body>
 </html>
