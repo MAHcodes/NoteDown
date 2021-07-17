@@ -19,6 +19,7 @@ This app is still under development stages. You can try the [Live Demo](https://
 ---
 
 ## Contact Me:
-[Twitter](https://twitter.com/MhmdAliHsen)  
-[Email](mailto:mhmdalihsen102@gmail.com)
-
+[![](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mhmdalihsen102@gmail.com) 
+[![](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/MhmdAliHsen)
+[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mhmd-ali-hsen-66b0671b7/)
+[![](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/404595695195258880/)
