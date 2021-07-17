@@ -73,6 +73,7 @@ function pinNote(e) {
 };
 
 function openNote(e) {
+    if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()};
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
     noteCards.forEach(card => card.classList.remove("active"));
@@ -201,6 +202,7 @@ function toggleView() {
 };
 
 function filterNotes() {
+    console.log("fired")
     const timesIco = document.getElementById("times");
     timesIco.addEventListener("click", () => {
         searchInput.value = "";
@@ -219,9 +221,9 @@ function filterNotes() {
     noteCards.forEach(card => {
         const cardTitle = card.querySelector(".card-title");
         if (cardTitle.innerText.toLowerCase().includes(searchInput.value.toLowerCase())) {
-            card.classList.remove("hidden");
+            card.style.display = "block";
         } else {
-            card.classList.add("hidden");
+            card.style.display = "none";
         };
     });
 };
