@@ -59,7 +59,6 @@ function pinNote(e) {
         pinBtn.classList.add("pin");
         pinnedContainer.insertAdjacentElement("afterbegin", note); 
     };
-
     if (pinnedContainer.childElementCount === 0) {
         pinnedContainer.classList.add('hidden');
     } else {
@@ -205,12 +204,24 @@ function filterNotes() {
     const timesIco = document.getElementById("times");
     timesIco.addEventListener("click", () => {
         searchInput.value = "";
-        timesIco.classList.add("hidden")});
+        timesIco.classList.add("hidden");
+        document.querySelectorAll(".note-card").forEach(n => n.style.display = "block");
+    });
     if (searchInput.value !== "") {
         timesIco.classList.remove("hidden");
         searchInput.style.padding = ".7em calc(30px + 1em) .7em calc(30px + 1em)";
     } else {
         timesIco.classList.add("hidden");
         searchInput.style.padding = ".7em 1em .7em calc(30px + 1em)";
-    };
+    }; 
+    const noteCards = document.querySelectorAll(".note-card");
+
+    noteCards.forEach(card => {
+        const cardTitle = card.querySelector(".card-title");
+        if (cardTitle.innerText.toLowerCase().includes(searchInput.value.toLowerCase())) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+        };
+    });
 };

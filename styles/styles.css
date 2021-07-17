@@ -176,7 +176,7 @@ aside {
 }
 
 .note-card .title > i {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-right: .4em;
 }
 
@@ -208,7 +208,7 @@ aside {
    border-radius: 1em;
    padding: .1em .5em;
    border: 1px solid var(--gray);
-   opacity: .75;
+   opacity: .8;
    transition: opacity 200ms;
 }
 
