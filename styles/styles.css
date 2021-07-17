@@ -180,11 +180,16 @@ aside {
     margin-right: .4em;
 }
 
-.card-text {
+.card-text,
+.card-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.card-text {
     margin: 1em 0 ;
+    max-height: 2.65em;
 }
 
 .info-container {
@@ -310,6 +315,7 @@ aside {
     border-radius: .3rem;
     display: none;
     overflow-y: auto;
+    z-index: 999999;
 }
 
 #all-icons i {

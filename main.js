@@ -6,8 +6,10 @@ const otherContainer = document.querySelector(".other-container");
 const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
-window.onload = () => changeIcon();
-updateEvents();
+window.onload = () => {
+    changeIcon();
+    updateEvents();
+};
 
 const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
@@ -17,7 +19,18 @@ searchInput.oninput = () => filterNotes();
 
 const inputTitle = document.getElementById("input-title");
 inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
+inputTitle.onblur = () => updateNoteTitle();
+inputTitle.onchange = () => updateDate();
 
+const textAreaInput = document.getElementById("text-input");
+textAreaInput.onblur = () => updateNoteText();
+textAreaInput.onchange = () => updateDate();
+
+const dateTitle = document.getElementById("main-date");
+
+function updateDate() {
+    dateTitle.innerText = getCurrentTime();
+};
 
 function updateEvents() {
     const pinBtns = document.querySelectorAll(".pin-toggle");
@@ -62,8 +75,41 @@ function pinNote(e) {
 
 function openNote(e) {
     const noteCards = document.querySelectorAll(".note-card");
+    const iconTitle = document.querySelector("#icon-btn > i");
     noteCards.forEach(card => card.classList.remove("active"));
     this.classList.add("active");
+    textAreaInput.value = this.children[2].innerText;
+    iconTitle.classList = this.children[1].children[0].classList;
+    inputTitle.value = this.children[1].children[1].innerText;
+    dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
+};
+
+function updateNoteTitle() {
+    const activeNote = document.querySelector(".active");
+    const cardTitle = activeNote.querySelector(".title .card-title");
+    cardTitle.innerText = inputTitle.value;
+    updateNoteDate();
+};
+
+function updateNoteText() {
+    const activeNote = document.querySelector(".active");
+    const cardText = activeNote.querySelector(".card-text");
+    cardText.innerText = textAreaInput.value;
+    updateNoteDate();
+};
+
+function updateNoteIcon() {
+    const activeNote = document.querySelector(".active");
+    const cardIcon = activeNote.querySelector(".title i");
+    const iconTitle = document.querySelector("#icon-btn > i");
+    cardIcon.classList = iconTitle.classList;
+    updateNoteDate();
+};
+
+function updateNoteDate() {
+    const activeNote = document.querySelector(".active");
+    const cardDate = activeNote.querySelector(".date-container .card-date");
+    cardDate.innerText = dateTitle.innerText;
 };
 
 function changeIcon() {
@@ -75,16 +121,18 @@ function changeIcon() {
             iconTitle.classList = [];
             iconTitle.classList.add(e.target.classList[0]);
             iconTitle.classList.add(e.target.classList[1]);
+            updateNoteIcon();
+            dateTitle.innerText = getCurrentTime();
         });
         ico.classList.add(icon[0]);
         ico.classList.add(icon[1]);
+        ico.setAttribute("title", icon[1].split("-").slice(1).join(" "));
         allIconsContainer.appendChild(ico);
     });
 };
 
 function createNewNote() {
-    const currentDate = new Date();
-    const currentTime = `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${currentDate.getHours()}:${currentDate.getMinutes()}`
+    const currentTime = getCurrentTime();
     const noteCardHtml = `<div class="note-card">
                             <i class="las la-thumbtack pin-toggle"></i>
                             <div class="title">
@@ -109,6 +157,11 @@ function createNewNote() {
     otherContainer.firstElementChild.click();
 };
 
+function getCurrentTime() {
+    const currentDate = new Date();
+    return `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${currentDate.getHours()}:${currentDate.getMinutes()}` 
+};
+
 function createRipple(e) {
     const button = e.currentTarget;
     const span = document.createElement("span");
@@ -127,7 +180,6 @@ function createRipple(e) {
 };
 
 function toggleView() {
-    const txtArea = document.getElementById("text-input");
     const txtView = document.querySelector(".text-view");
     const markedBtnIcon = document.querySelector("#marked i");
     const markText = document.querySelector(".mark-text");
@@ -137,14 +189,14 @@ function toggleView() {
         markedBtnIcon.classList.add("la-edit");
         markText.innerText = "Edit";
         
-        txtView.innerHTML = marked(txtArea.value);
+        txtView.innerHTML = marked(textAreaInput.value);
         txtView.classList.remove("hidden");
-        txtArea.classList.add("hidden")
+        textAreaInput.classList.add("hidden")
     } else {
         markedBtnIcon.classList.add("la-eye");
         markedBtnIcon.classList.remove("la-edit")
         txtView.classList.add("hidden");
-        txtArea.classList.remove("hidden");
+        textAreaInput.classList.remove("hidden");
         markText.innerText = "MarkDown";
     };
 };
