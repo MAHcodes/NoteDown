@@ -51,9 +51,11 @@ aside {
 
 .search {
    position: relative;
+   margin-bottom: .5em;
 }
 
-#search {
+#search,
+#search-icons {
     width: 100%;
     font-size: .9rem;
     padding: .7em 1em .7em calc(30px + 1em);
@@ -63,6 +65,7 @@ aside {
     background-color: #fff;
 }
 
+#search-icons:focus,
 #search:focus {
     outline: .1em solid var(--main-blue);
 }
@@ -296,8 +299,8 @@ aside {
     outline: none;
 }
 
-#icon-btn:hover i,
-#icon-btn:focus i {
+#icon-btn:hover > i,
+#icon-btn:focus > i {
     transform: scale(1.125);
 }
 
@@ -318,7 +321,7 @@ aside {
     z-index: 999999;
 }
 
-#all-icons i {
+#all-icons > i {
     cursor: pointer;
     padding: .15em;
     color: var(--black);
@@ -328,7 +331,7 @@ aside {
     transition: 250ms;
 }
 
-#all-icons i:hover {
+#all-icons > i:hover {
     transform: scale(1.25);
     background-color: var(--light-gray);
     opacity: 1;

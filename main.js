@@ -17,6 +17,9 @@ markedBtn.onclick = () => toggleView();
 const searchInput = document.getElementById("search");
 searchInput.oninput = () => filterNotes();
 
+const searchIcon = document.getElementById("search-icons");
+searchIcon.oninput = () => filterIcons();
+
 const inputTitle = document.getElementById("input-title");
 inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
 inputTitle.onblur = () => updateNoteTitle();
@@ -202,7 +205,6 @@ function toggleView() {
 };
 
 function filterNotes() {
-    console.log("fired")
     const timesIco = document.getElementById("times");
     timesIco.addEventListener("click", () => {
         searchInput.value = "";
@@ -216,14 +218,38 @@ function filterNotes() {
         timesIco.classList.add("hidden");
         searchInput.style.padding = ".7em 1em .7em calc(30px + 1em)";
     }; 
-    const noteCards = document.querySelectorAll(".note-card");
 
+    const noteCards = document.querySelectorAll(".note-card");
     noteCards.forEach(card => {
         const cardTitle = card.querySelector(".card-title");
         if (cardTitle.innerText.toLowerCase().includes(searchInput.value.toLowerCase())) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
+        };
+    });
+};
+
+function filterIcons() {
+    const timesIcons = document.getElementById("times-icons");
+    const allIcons = document.querySelectorAll("#all-icons > i");
+    timesIcons.addEventListener("click", () => {
+        searchIcon.value = "";
+        timesIcons.classList.add("hidden");
+        allIcons.forEach(icon => icon.style.display = "inline-block");
+    });
+    if (searchIcon.value !== "") {
+        timesIcons.classList.remove("hidden");
+        searchIcon.style.padding = ".7em calc(30px + 1em) .7em calc(30px + 1em)";
+    } else {
+        timesIcons.classList.add("hidden");
+        searchIcon.style.padding = ".7em 1em .7em calc(30px + 1em)";
+    }; 
+    allIcons.forEach(icon => {
+        if (icon.classList[1].toLowerCase().split("-").join(" ").includes(searchIcon.value.toLowerCase())) {
+            icon.style.display = "inline-block";
+        } else {
+            icon.style.display = "none";
         };
     });
 };
