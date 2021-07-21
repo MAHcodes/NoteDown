@@ -37,6 +37,27 @@ addTagBtn.onclick = () => addTag();
 const themeToggle = document.getElementById("theme-toggle");
 themeToggle.onclick = () => changeTheme();
 
+const deleteNote = document.getElementById("delete-note");
+deleteNote.onclick = () => deleteTheNote();
+
+const noteColor = document.getElementById("note-color");
+const noteColorsContainer = document.querySelector(".colors");
+noteColor.onmouseenter = () => {
+    noteColorsContainer.style.display = "block";
+    document.documentElement.addEventListener("click", hideColorsContainer);
+
+    function hideColorsContainer(e) {
+        if (e.target.classList[1] == "la-palette") return;
+        noteColorsContainer.style.display = "none";
+    };
+
+    const colors = document.querySelectorAll(".colors span");
+    colors.forEach(color => color.addEventListener("click", (e) => {
+        const activeNote = document.querySelector(".note-card.active");
+        activeNote.style.backgroundColor = e.target.dataset.color;
+    }));
+};
+
 function updateDate() {
     dateTitle.innerText = getCurrentTime();
 };
@@ -81,7 +102,7 @@ function pinNote(e) {
     updateEvents();
 };
 
-function openNote(e) {
+function openNote() {
     if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()};
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
@@ -192,21 +213,23 @@ function toggleView() {
     const txtView = document.querySelector(".text-view");
     const markedBtnIcon = document.querySelector("#marked i");
     const markText = document.querySelector(".mark-text");
+    const toolsContainer = document.querySelector(".tools-container");
 
     if (txtView.classList.contains("hidden")) {
         markedBtnIcon.classList.remove("la-eye");
         markedBtnIcon.classList.add("la-edit");
         markText.innerText = "Edit";
-        
         txtView.innerHTML = marked(textAreaInput.value);
         txtView.classList.remove("hidden");
-        textAreaInput.classList.add("hidden")
+        textAreaInput.classList.add("hidden");
+        toolsContainer.classList.add("hidden");
     } else {
         markedBtnIcon.classList.add("la-eye");
-        markedBtnIcon.classList.remove("la-edit")
+        markedBtnIcon.classList.remove("la-edit");
         txtView.classList.add("hidden");
         textAreaInput.classList.remove("hidden");
         markText.innerText = "MarkDown";
+        toolsContainer.classList.remove("hidden");
     };
 };
 
@@ -270,4 +293,17 @@ function addTag() {
 
 function changeTheme() {
     document.documentElement.classList.toggle("dark-theme");
+};
+
+function deleteTheNote() {
+    if (confirm("Are You Sure To Delete This Note?")) {
+        const activeNote = document.querySelector(".note-card.active");
+        activeNote.remove();
+        try {
+            document.querySelector(".note-card").click();
+        } 
+        catch {
+            createNewNote();
+        }
+    };
 };

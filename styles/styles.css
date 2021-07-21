@@ -3,31 +3,33 @@
 :root {
     --white: hsl(0, 0%, 100%);
     --light-gray: hsl(204, 15%, 94%);
-    --dark-gray: hsl(0, 0%, 85%);
+    --dark-gray: hsl(0, 0%, 90%);
     --black: hsl(0, 0%, 10%);
     --main-blue: hsl(210, 79%, 46%);
     --gray: hsl(0, 0%, 43.5%);
+    --white-color: hsla(0, 0%, 100%, 1);
 }
 
 html.dark-theme {
     --white: hsl(0, 0%, 10%);
     --black: hsl(0, 0%, 90%);
     --light-gray: hsl(0, 0%, 6%);
-    --dark-gray: hsl(0, 0%, 25%);
+    --dark-gray: hsl(0, 0%, 20%);
     --gray: hsl(0, 0%, 83.5%);
+    --white-color: hsla(0, 0%, 100%, 0.25);
 }
 
 html {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(14px, calc(1vw + 1vh), 18px);
     color: var(--black);
-    transition: background-color 1000ms;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 650ms, color 650ms;
 }
 
 *::selection {
@@ -43,7 +45,7 @@ html {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 aside {
@@ -130,7 +132,7 @@ aside {
 }
 
 .note-card {
-    background-color: var(--white);
+    background-color: var(--white-color);
     border-radius: .25em;
     position: relative;
     padding: 1em;
@@ -348,7 +350,7 @@ aside {
 
 #all-icons > i:hover,
 .tools-container i:hover {
-    background-color: var(--light-gray);
+    background-color: var(--dark-gray);
     opacity: 1;
 }
 
@@ -462,6 +464,63 @@ textarea:focus {
 
 .tags-container .tag + .tag {
     margin-left: .5em;
+}
+
+.edit-container {
+    position: relative;
+}
+
+.colors {
+    display: none;
+    position: absolute;
+    top: -1em;
+    left: -1em;
+    background-color: var(--gray);
+    padding: .5em;
+    border-radius: .25em;
+    transform: translate(-25%, -100%);
+}
+
+.colors span {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid var(--white);
+    cursor: pointer;
+    transition: transform 250ms;
+}
+
+.colors span:nth-child(1) {
+    background-color: hsl(1, 83%, 63%);
+}
+
+.colors span:nth-child(2) {
+    background-color: hsl(207, 90%, 61%);
+}
+
+.colors span:nth-child(3) {
+    background-color: hsl(54, 100%, 67%);
+}
+
+.colors span:nth-child(4) {
+    background-color: hsl(291, 47%, 51%);
+}
+
+.colors span:nth-child(5) {
+    background-color: hsl(123, 38%, 57%);
+}
+
+.colors span:nth-child(6) {
+    background-color: hsl(200, 15%, 54%);
+}
+
+.colors span:nth-child(7) {
+    background-color: var(--white-color);
+}
+
+.colors span:hover {
+    transform: scale(1.15);
 }
 
 @keyframes ripple {
