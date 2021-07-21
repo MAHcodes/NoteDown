@@ -31,6 +31,12 @@ textAreaInput.onchange = () => updateDate();
 
 const dateTitle = document.getElementById("main-date");
 
+const addTagBtn = document.getElementById("add-tag");
+addTagBtn.onclick = () => addTag();
+
+const themeToggle = document.getElementById("theme-toggle");
+themeToggle.onclick = () => changeTheme();
+
 function updateDate() {
     dateTitle.innerText = getCurrentTime();
 };
@@ -252,4 +258,16 @@ function filterIcons() {
             icon.style.display = "none";
         };
     });
+};
+
+function addTag() {
+    const tagsContainer = document.querySelector(".tags-container");
+    const span = document.createElement("span");
+    span.classList.add("tag");
+    span.innerText = "hello";
+    tagsContainer.insertAdjacentElement("afterbegin", span)
+};
+
+function changeTheme() {
+    document.documentElement.classList.toggle("dark-theme");
 };

@@ -9,10 +9,19 @@
     --gray: hsl(0, 0%, 43.5%);
 }
 
+html.dark-theme {
+    --white: hsl(0, 0%, 10%);
+    --black: hsl(0, 0%, 90%);
+    --light-gray: hsl(204, 15%, 4%);
+    --dark-gray: hsl(0, 0%, 25%);
+    --gray: hsl(0, 0%, 83.5%);
+}
+
 html {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(14px, calc(1vw + 1vh), 18px);
     color: var(--black);
+    transition: background-color 1000ms;
 }
 
 * {
@@ -47,6 +56,7 @@ aside {
     flex-direction: column;
     width: 20%;
     overflow-y: auto;
+    z-index: 10;
 }
 
 .search {
@@ -61,8 +71,7 @@ aside {
     padding: .7em 1em .7em calc(30px + 1em);
     border-radius: .3em;
     border: none;
-    box-shadow: .1em .1em .5em hsl(0, 0%, 80%);
-    background-color: #fff;
+    box-shadow: .1em .1em .5em var(--dark-gray);
 }
 
 #search-icons:focus,
@@ -267,6 +276,7 @@ aside {
     padding: 1rem;
     background-color: var(--white);
     position: relative;
+    max-height: 100vh;
 }
 
 #marked {
@@ -295,6 +305,10 @@ aside {
     position: relative;
 }
 
+#icon-btn > i {
+    color: var(--black);
+}
+
 #icon-btn:focus {
     outline: none;
 }
@@ -318,7 +332,7 @@ aside {
     border-radius: .3rem;
     display: none;
     overflow-y: auto;
-    z-index: 999999;
+    z-index: 99999999;
 }
 
 #all-icons > i,
@@ -399,6 +413,11 @@ aside {
     font-weight: 400;
 }
 
+input {
+    background-color: var(--white);
+    color: var(--black);
+}
+
 textarea,
 .text-view {
     width: 100%;
@@ -408,6 +427,11 @@ textarea,
     font-size: 1.0125rem;
     background-color: var(--white);
     padding: 1.5rem;
+    color: var(--black);
+}
+
+.text-view {
+    overflow-y: auto;
 }
 
 textarea:focus {
@@ -433,6 +457,10 @@ textarea:focus {
     font-size: 1.5em;
     color: var(--black);
     cursor: pointer;
+    margin-left: .5em;
+}
+
+.tags-container .tag + .tag {
     margin-left: .5em;
 }
 
