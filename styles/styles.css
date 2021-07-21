@@ -205,7 +205,7 @@ aside {
     animation: show 300ms ease-in-out forwards;
 }
 
-.info-container .tag {
+.tag {
    font-size: .7em;
    background-color:  hsla(210, 79%, 46%, 0.15);
    border-radius: 1em;
@@ -321,7 +321,8 @@ aside {
     z-index: 999999;
 }
 
-#all-icons > i {
+#all-icons > i,
+.tools-container i {
     cursor: pointer;
     padding: .15em;
     color: var(--black);
@@ -331,12 +332,16 @@ aside {
     transition: 250ms;
 }
 
-#all-icons > i:hover {
-    transform: scale(1.25);
+#all-icons > i:hover,
+.tools-container i:hover {
     background-color: var(--light-gray);
     opacity: 1;
 }
 
+#all-icons > i:hover {
+    transform: scale(1.15);
+}
+    
 #all-icons::before {
     content: "";
     border: 1rem solid;
@@ -408,6 +413,27 @@ textarea,
 textarea:focus {
     border: none;
     outline: none;
+}
+
+.tools-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem 0 ;
+    border-top: 1px solid var(--dark-gray);
+}
+
+.tags-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tools-container i {
+    font-size: 1.5em;
+    color: var(--black);
+    cursor: pointer;
+    margin-left: .5em;
 }
 
 @keyframes ripple {
