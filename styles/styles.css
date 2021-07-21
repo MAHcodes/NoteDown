@@ -12,7 +12,7 @@
 html.dark-theme {
     --white: hsl(0, 0%, 10%);
     --black: hsl(0, 0%, 90%);
-    --light-gray: hsl(204, 15%, 4%);
+    --light-gray: hsl(0, 0%, 6%);
     --dark-gray: hsl(0, 0%, 25%);
     --gray: hsl(0, 0%, 83.5%);
 }
