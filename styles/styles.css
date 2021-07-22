@@ -57,7 +57,7 @@ aside {
     flex: 2;
     flex-direction: column;
     width: 20%;
-    overflow-y: auto;
+    overflow: hidden auto;
     z-index: 10;
 }
 
@@ -334,7 +334,7 @@ aside {
     border-radius: .3rem;
     display: none;
     overflow-y: auto;
-    z-index: 99999999;
+    z-index: 999999;
 }
 
 #all-icons > i,

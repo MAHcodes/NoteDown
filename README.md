@@ -9,7 +9,7 @@ NoteDown is an open source note-taking app to capture your ideas with an easy an
 - [x] Dark / Light theme.
 - [x] Search for notes.
 - [x] Sortable notes.
-- [ ] Save to local strorage.
+- [x] Save to local strorage.
 - [ ] Mobile responsive.
 - [ ] Todo Lists. 
 

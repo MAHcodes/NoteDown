@@ -9,6 +9,8 @@ addBtn.addEventListener("click", createRipple);
 window.onload = () => {
     changeIcon();
     updateEvents();
+    restoreTheme();
+    restoreNotes();
     new Sortable(pinnedContainer);
     new Sortable(otherContainer);
 };
@@ -142,6 +144,7 @@ function updateNoteDate() {
     const activeNote = document.querySelector(".active");
     const cardDate = activeNote.querySelector(".date-container .card-date");
     cardDate.innerText = dateTitle.innerText;
+    saveNote2LocalStorage();
 };
 
 function changeIcon() {
@@ -163,29 +166,51 @@ function changeIcon() {
     });
 };
 
-function createNewNote() {
-    const currentTime = getCurrentTime();
+function createNewNote(obj) {
+    let title, icon, text,date,tags, color, pinned;
+    if (obj == null) {
+        title = "Untitled Note";
+        icon = ["las", "la-sticky-note"];
+        text = "";
+        date = "Now";
+        tags = "";
+        color = "";
+        pinned = "other-container";
+    } else {
+        title = obj.title;
+        icon = obj.icon;
+        text = obj.text;
+        date = obj.date;
+        tags = obj.tags; 
+        color = obj.color;
+        pinned = obj.pinned;
+    };
     const noteCardHtml = `<div class="note-card">
                             <i class="las la-thumbtack pin-toggle"></i>
                             <div class="title">
-                                <i class="lar la-sticky-note"></i>
-                                <h3 class="card-title">Untitled Note</h3>
+                                <i class="${icon[0]} ${icon[1]}"></i>
+                                <h3 class="card-title">${title}</h3>
                             </div>
-                            <p class="card-text"></p>
+                            <p class="card-text">${text}</p>
                             <div class="info-container">
                                 <div class="tags">
+                                ${tags}
                                 </div>
                                 <div class="date-container">
-                                    <h6 class="card-date">${currentTime}</h6>
+                                    <h6 class="card-date">${date}</h6>
                                 </div>
                             </div>
                         </div>`;
-
-    otherContainer.classList.remove("hidden");
-    otherContainer.insertAdjacentHTML("afterbegin", noteCardHtml);
-
+    if (pinned == "other-container") {
+        otherContainer.classList.remove("hidden");
+        otherContainer.insertAdjacentHTML("afterbegin", noteCardHtml);
+        otherContainer.firstElementChild.click();
+    } else {
+        pinnedContainer.classList.remove("hidden");
+        pinnedContainer.insertAdjacentHTML("afterbegin", noteCardHtml)
+        pinnedContainer.firstElementChild.click();
+    };
     updateEvents();
-    otherContainer.firstElementChild.click();
 };
 
 function getCurrentTime() {
@@ -295,6 +320,19 @@ function addTag() {
 function changeTheme() {
     themeToggle.classList.toggle("toggle");
     document.documentElement.classList.toggle("dark-theme");
+    if (document.documentElement.classList[0] == "dark-theme") {
+        localStorage.setItem("darkTheme", true);
+    } else {
+        localStorage.setItem("darkTheme", false)
+    };
+};
+
+function restoreTheme() {
+    let darkTheme;
+    darkTheme = localStorage.getItem("darkTheme");
+    if (darkTheme == "true") {
+       changeTheme(); 
+    };
 };
 
 function deleteTheNote() {
@@ -308,4 +346,33 @@ function deleteTheNote() {
             createNewNote();
         }
     };
+};
+
+function saveNote2LocalStorage() {
+    const notes = document.querySelectorAll(".note-card");
+    let allNotes = []; 
+    notes.forEach((note) => {
+        note = {
+            title: note.querySelector(".card-title").innerText,
+            text: note.querySelector(".card-text").innerText,
+            icon: note.querySelector(".title > i").classList,
+            date: note.querySelector(".card-date").innerText,
+            color: note.style.backgroundColor,
+            pinned: note.parentElement.className,
+            tags: "",
+        };
+        allNotes.push(note)
+    });
+    localStorage.setItem("cardNotes", JSON.stringify(allNotes));
+};
+
+function restoreNotes() {
+    const allNotes = JSON.parse(localStorage.getItem("cardNotes"));
+    if (allNotes) {
+        allNotes.forEach(note => {
+            createNewNote(note);
+        });
+    } else {
+        createNewNote();
+    }
 };
