@@ -9,6 +9,8 @@ addBtn.addEventListener("click", createRipple);
 window.onload = () => {
     changeIcon();
     updateEvents();
+    new Sortable(pinnedContainer);
+    new Sortable(otherContainer);
 };
 
 const markedBtn = document.getElementById("marked");
@@ -172,7 +174,6 @@ function createNewNote() {
                             <p class="card-text"></p>
                             <div class="info-container">
                                 <div class="tags">
-                                    <span class="tag"></span>
                                 </div>
                                 <div class="date-container">
                                     <h6 class="card-date">${currentTime}</h6>
@@ -287,11 +288,12 @@ function addTag() {
     const tagsContainer = document.querySelector(".tags-container");
     const span = document.createElement("span");
     span.classList.add("tag");
-    span.innerText = "hello";
+    span.innerText = "";
     tagsContainer.insertAdjacentElement("afterbegin", span)
 };
 
 function changeTheme() {
+    themeToggle.classList.toggle("toggle");
     document.documentElement.classList.toggle("dark-theme");
 };
 

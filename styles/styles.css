@@ -16,7 +16,7 @@ html.dark-theme {
     --light-gray: hsl(0, 0%, 6%);
     --dark-gray: hsl(0, 0%, 20%);
     --gray: hsl(0, 0%, 83.5%);
-    --white-color: hsla(0, 0%, 100%, 0.25);
+    --white-color: hsla(0, 0%, 50%, 0.25);
 }
 
 html {
@@ -521,6 +521,14 @@ textarea:focus {
 
 .colors span:hover {
     transform: scale(1.15);
+}
+
+#theme-toggle {
+    transition: transform 450ms cubic-bezier(.18,.89,.32,1.28);
+}
+
+#theme-toggle.toggle {
+    transform: rotateZ(360deg);
 }
 
 @keyframes ripple {
