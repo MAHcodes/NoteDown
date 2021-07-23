@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@font-face {
+    font-family: "Poppins";
+    src: url(./fonts/Poppins/Poppins-Regular.ttf), url(./fonts/Poppins/Poppins-Light.ttf);
+}
 
 :root {
     --white: hsl(0, 0%, 100%);
