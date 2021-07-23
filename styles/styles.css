@@ -349,7 +349,8 @@ aside {
 }
 
 #all-icons > i:hover,
-.tools-container i:hover {
+.edit-container > i:hover,
+.add-tag > i:hover {
     background-color: var(--dark-gray);
     opacity: 1;
 }
@@ -455,11 +456,17 @@ textarea:focus {
     justify-content: center;
 }
 
-.tools-container i {
+.edit-container > i,
+.add-tag > i {
     font-size: 1.5em;
     color: var(--black);
     cursor: pointer;
     margin-left: .5em;
+}
+
+.colors i {
+    color: var(--white);
+    font-size: 1.1em;
 }
 
 .tags-container .tag + .tag {
@@ -474,11 +481,12 @@ textarea:focus {
     display: none;
     position: absolute;
     top: -1em;
-    left: -1em;
+    left: -4em;
     background-color: var(--gray);
     padding: .5em;
     border-radius: .25em;
     transform: translate(-25%, -100%);
+    align-items: center;
 }
 
 .colors span {
@@ -489,6 +497,11 @@ textarea:focus {
     border: 1px solid var(--white);
     cursor: pointer;
     transition: transform 250ms;
+}
+
+.colors span + span,
+.colors i {
+    margin-left: .35em;
 }
 
 .colors span:nth-child(1) {

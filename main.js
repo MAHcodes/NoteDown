@@ -47,7 +47,7 @@ deleteNote.onclick = () => deleteTheNote();
 const noteColor = document.getElementById("note-color");
 const noteColorsContainer = document.querySelector(".colors");
 noteColor.onmouseenter = () => {
-    noteColorsContainer.style.display = "block";
+    noteColorsContainer.style.display = "flex";
     document.documentElement.addEventListener("click", hideColorsContainer);
 
     function hideColorsContainer(e) {
@@ -59,6 +59,7 @@ noteColor.onmouseenter = () => {
     colors.forEach(color => color.addEventListener("click", (e) => {
         const activeNote = document.querySelector(".note-card.active");
         activeNote.style.backgroundColor = e.target.dataset.color;
+        saveNote2LocalStorage();
     }));
 };
 
@@ -104,6 +105,7 @@ function pinNote(e) {
         otherContainer.classList.remove("hidden");
     };
     updateEvents();
+    saveNote2LocalStorage();
 };
 
 function openNote() {
@@ -185,8 +187,10 @@ function createNewNote(obj) {
         color = obj.color;
         pinned = obj.pinned;
     };
-    const noteCardHtml = `<div class="note-card">
-                            <i class="las la-thumbtack pin-toggle"></i>
+
+    const noteCard = document.createElement("div");
+    noteCard.classList.add("note-card");
+    noteCard.innerHTML = `<i class="las la-thumbtack pin-toggle"></i>
                             <div class="title">
                                 <i class="${icon[0]} ${icon[1]}"></i>
                                 <h3 class="card-title">${title}</h3>
@@ -199,23 +203,30 @@ function createNewNote(obj) {
                                 <div class="date-container">
                                     <h6 class="card-date">${date}</h6>
                                 </div>
-                            </div>
-                        </div>`;
+                            </div>`;
+    noteCard.style.backgroundColor = color;
+
     if (pinned == "other-container") {
         otherContainer.classList.remove("hidden");
-        otherContainer.insertAdjacentHTML("afterbegin", noteCardHtml);
-        otherContainer.firstElementChild.click();
+        otherContainer.insertAdjacentElement("afterbegin", noteCard);
     } else {
         pinnedContainer.classList.remove("hidden");
-        pinnedContainer.insertAdjacentHTML("afterbegin", noteCardHtml)
-        pinnedContainer.firstElementChild.click();
+        const pinBtn = noteCard.querySelector(".pin-toggle");
+        pinBtn.classList.add("pin");
+        pinnedContainer.insertAdjacentElement("afterbegin", noteCard);
     };
     updateEvents();
+    try {
+        pinnedContainer.firstElementChild.click();
+    } catch {
+        otherContainer.firstElementChild.click();
+    };
+    saveNote2LocalStorage();
 };
 
 function getCurrentTime() {
     const currentDate = new Date();
-    return `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${currentDate.getHours()}:${currentDate.getMinutes()}` 
+    return `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${String(currentDate.getHours()).padStart(2, "0")}:${String(currentDate.getMinutes()).padStart(2, "0")}` 
 };
 
 function createRipple(e) {
@@ -346,6 +357,7 @@ function deleteTheNote() {
             createNewNote();
         }
     };
+    saveNote2LocalStorage();
 };
 
 function saveNote2LocalStorage() {
@@ -354,7 +366,7 @@ function saveNote2LocalStorage() {
     notes.forEach((note) => {
         note = {
             title: note.querySelector(".card-title").innerText,
-            text: note.querySelector(".card-text").innerText,
+            text: note.querySelector(".card-text").innerHTML,
             icon: note.querySelector(".title > i").classList,
             date: note.querySelector(".card-date").innerText,
             color: note.style.backgroundColor,
