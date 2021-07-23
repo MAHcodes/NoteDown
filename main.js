@@ -94,6 +94,12 @@ function pinNote(e) {
         pinBtn.classList.add("pin");
         pinnedContainer.insertAdjacentElement("afterbegin", note); 
     };
+    updateNotesContainers();
+    updateEvents();
+    saveNote2LocalStorage();
+};
+
+function updateNotesContainers() {
     if (pinnedContainer.childElementCount === 0) {
         pinnedContainer.classList.add('hidden');
     } else {
@@ -104,8 +110,6 @@ function pinNote(e) {
     } else {
         otherContainer.classList.remove("hidden");
     };
-    updateEvents();
-    saveNote2LocalStorage();
 };
 
 function openNote() {
@@ -174,7 +178,7 @@ function createNewNote(obj) {
         title = "Untitled Note";
         icon = ["las", "la-sticky-note"];
         text = "";
-        date = "Now";
+        date = "Last edit: Just now";
         tags = "";
         color = "";
         pinned = "other-container";
@@ -357,6 +361,7 @@ function deleteTheNote() {
             createNewNote();
         }
     };
+    updateNotesContainers();
     saveNote2LocalStorage();
 };
 
@@ -386,5 +391,7 @@ function restoreNotes() {
         });
     } else {
         createNewNote();
-    }
+    };
+    updateNotesContainers();
+    updateEvents();
 };
