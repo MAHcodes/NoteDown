@@ -528,7 +528,7 @@ textarea:focus {
 }
 
 .colors span:nth-child(6) {
-    background-color: hsl(200, 15%, 54%);
+    background-color: hsla(0, 0%, 67%, 0.251);
 }
 
 .colors span:nth-child(7) {

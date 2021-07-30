@@ -74,6 +74,7 @@ function updateEvents() {
     const noteCards = document.querySelectorAll(".note-card");
     noteCards.forEach(card => {
         card.addEventListener("click", openNote);
+        card.addEventListener("touchstart", openNote);
     });
 
     if (!pinnedContainer.classList.contains("hidden") && (!otherContainer.classList.contains("hidden"))) {
