@@ -265,6 +265,7 @@ function toggleView() {
         txtView.classList.remove("hidden");
         textAreaInput.classList.add("hidden");
         toolsContainer.classList.add("hidden");
+        markedBtn.title = "Edit Note";
     } else {
         markedBtnIcon.classList.add("la-eye");
         markedBtnIcon.classList.remove("la-edit");
@@ -272,6 +273,7 @@ function toggleView() {
         textAreaInput.classList.remove("hidden");
         markText.innerText = "MarkDown";
         toolsContainer.classList.remove("hidden");
+        markedBtn.title = "View MarkDown";
     };
 };
 
