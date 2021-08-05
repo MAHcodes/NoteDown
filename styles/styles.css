@@ -4,8 +4,8 @@
 }
 
 :root {
-    --white: hsl(0, 0%, 100%);
-    --light-gray: hsl(204, 15%, 94%);
+    --white: hsl(212.7, 100%, 96.7%);
+   --light-gray: hsl(212.7, 70%, 92.7%);
     --dark-gray: hsl(0, 0%, 90%);
     --black: hsl(0, 0%, 10%);
     --main-blue: hsl(210, 79%, 46%);
@@ -14,9 +14,9 @@
 }
 
 html.dark-theme {
-    --white: hsl(0, 0%, 10%);
+    --white: hsl(246, 17.2%, 11.4%);
     --black: hsl(0, 0%, 90%);
-    --light-gray: hsl(0, 0%, 6%);
+    --light-gray: hsl(246, 17.2%, 9.4%);
     --dark-gray: hsl(0, 0%, 20%);
     --gray: hsl(0, 0%, 83.5%);
     --white-color: hsla(0, 0%, 50%, 0.25);
@@ -76,7 +76,7 @@ aside {
     padding: .7em 1em .7em calc(30px + 1em);
     border-radius: .3em;
     border: none;
-    box-shadow: .1em .1em .5em var(--dark-gray);
+    box-shadow: 0 0 .5em .1em #88888820;
 }
 
 #search-icons:focus,
@@ -135,7 +135,7 @@ aside {
 }
 
 .note-card {
-    background-color: var(--white-color);
+    background-color: hsla(0, 0%, 100%, .4);
     border-radius: .25em;
     position: relative;
     padding: 1em;
