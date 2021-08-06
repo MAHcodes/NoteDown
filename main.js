@@ -51,9 +51,9 @@ noteColor.onmouseenter = () => {
     document.documentElement.addEventListener("click", hideColorsContainer);
 
     function hideColorsContainer(e) {
-        if (e.target.classList[1] == "la-palette") return;
+        if (e.target.classList[1] === "la-palette") return;
         noteColorsContainer.style.display = "none";
-    };
+    }
 
     const colors = document.querySelectorAll(".colors span");
     colors.forEach(color => color.addEventListener("click", (e) => {
@@ -65,7 +65,7 @@ noteColor.onmouseenter = () => {
 
 function updateDate() {
     dateTitle.innerText = getCurrentTime();
-};
+}
 
 function updateEvents() {
     const pinBtns = document.querySelectorAll(".pin-toggle");
@@ -78,13 +78,13 @@ function updateEvents() {
     });
 
     if (!pinnedContainer.classList.contains("hidden") && (!otherContainer.classList.contains("hidden"))) {
-        pinnedContainer.style.flexGrow = 0;
+        pinnedContainer.style.flexGrow = "0";
     } else {
-        pinnedContainer.style.flexGrow = 1;
-    };
-};
+        pinnedContainer.style.flexGrow = "1";
+    }
+}
 
-function pinNote(e) {
+function pinNote() {
     const note = this.parentElement;
     const pinBtn = this;
     
@@ -94,27 +94,27 @@ function pinNote(e) {
     } else {
         pinBtn.classList.add("pin");
         pinnedContainer.insertAdjacentElement("afterbegin", note); 
-    };
+    }
     updateNotesContainers();
     updateEvents();
     saveNote2LocalStorage();
-};
+}
 
 function updateNotesContainers() {
     if (pinnedContainer.childElementCount === 0) {
         pinnedContainer.classList.add('hidden');
     } else {
         pinnedContainer.classList.remove("hidden");
-    };
+    }
     if (otherContainer.childElementCount === 0) {
         otherContainer.classList.add("hidden");
     } else {
         otherContainer.classList.remove("hidden");
-    };
-};
+    }
+}
 
 function openNote() {
-    if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()};
+    if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()}
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
     noteCards.forEach(card => card.classList.remove("active"));
@@ -123,21 +123,21 @@ function openNote() {
     iconTitle.classList = this.children[1].children[0].classList;
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
-};
+}
 
 function updateNoteTitle() {
     const activeNote = document.querySelector(".active");
     const cardTitle = activeNote.querySelector(".title .card-title");
     cardTitle.innerText = inputTitle.value;
     updateNoteDate();
-};
+}
 
 function updateNoteText() {
     const activeNote = document.querySelector(".active");
     const cardText = activeNote.querySelector(".card-text");
     cardText.innerText = textAreaInput.value;
     updateNoteDate();
-};
+}
 
 function updateNoteIcon() {
     const activeNote = document.querySelector(".active");
@@ -145,14 +145,14 @@ function updateNoteIcon() {
     const iconTitle = document.querySelector("#icon-btn > i");
     cardIcon.classList = iconTitle.classList;
     updateNoteDate();
-};
+}
 
 function updateNoteDate() {
     const activeNote = document.querySelector(".active");
     const cardDate = activeNote.querySelector(".date-container .card-date");
     cardDate.innerText = dateTitle.innerText;
     saveNote2LocalStorage();
-};
+}
 
 function changeIcon() {
     const allIconsContainer = document.getElementById("all-icons");
@@ -171,7 +171,7 @@ function changeIcon() {
         ico.setAttribute("title", icon[1].split("-").slice(1).join(" "));
         allIconsContainer.appendChild(ico);
     });
-};
+}
 
 function createNewNote(obj) {
     let title, icon, text,date,tags, color, pinned;
@@ -191,7 +191,7 @@ function createNewNote(obj) {
         tags = obj.tags; 
         color = obj.color;
         pinned = obj.pinned;
-    };
+    }
 
     const noteCard = document.createElement("div");
     noteCard.classList.add("note-card");
@@ -211,7 +211,7 @@ function createNewNote(obj) {
                             </div>`;
     noteCard.style.backgroundColor = color;
 
-    if (pinned == "other-container") {
+    if (pinned === "other-container") {
         otherContainer.classList.remove("hidden");
         otherContainer.insertAdjacentElement("afterbegin", noteCard);
     } else {
@@ -219,20 +219,20 @@ function createNewNote(obj) {
         const pinBtn = noteCard.querySelector(".pin-toggle");
         pinBtn.classList.add("pin");
         pinnedContainer.insertAdjacentElement("afterbegin", noteCard);
-    };
+    }
     updateEvents();
     try {
         pinnedContainer.firstElementChild.click();
     } catch {
         otherContainer.firstElementChild.click();
-    };
+    }
     saveNote2LocalStorage();
-};
+}
 
 function getCurrentTime() {
     const currentDate = new Date();
     return `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${String(currentDate.getHours()).padStart(2, "0")}:${String(currentDate.getMinutes()).padStart(2, "0")}` 
-};
+}
 
 function createRipple(e) {
     const button = e.currentTarget;
@@ -245,11 +245,11 @@ function createRipple(e) {
     const ripple = button.getElementsByClassName("ripple")[0];
     if (ripple) {
     ripple.remove();
-    };
+    }
     button.appendChild(span);
     createNewNote();
     updateEvents();
-};
+}
 
 function toggleView() {
     const txtView = document.querySelector(".text-view");
@@ -274,8 +274,8 @@ function toggleView() {
         markText.innerText = "MarkDown";
         toolsContainer.classList.remove("hidden");
         markedBtn.title = "View MarkDown";
-    };
-};
+    }
+}
 
 function filterNotes() {
     const timesIco = document.getElementById("times");
@@ -290,7 +290,7 @@ function filterNotes() {
     } else {
         timesIco.classList.add("hidden");
         searchInput.style.padding = ".7em 1em .7em calc(30px + 1em)";
-    }; 
+    }
 
     const noteCards = document.querySelectorAll(".note-card");
     noteCards.forEach(card => {
@@ -299,9 +299,9 @@ function filterNotes() {
             card.style.display = "block";
         } else {
             card.style.display = "none";
-        };
+        }
     });
-};
+}
 
 function filterIcons() {
     const timesIcons = document.getElementById("times-icons");
@@ -317,15 +317,15 @@ function filterIcons() {
     } else {
         timesIcons.classList.add("hidden");
         searchIcon.style.padding = ".7em 1em .7em calc(30px + 1em)";
-    }; 
+    }
     allIcons.forEach(icon => {
         if (icon.classList[1].toLowerCase().split("-").join(" ").includes(searchIcon.value.toLowerCase())) {
             icon.style.display = "inline-block";
         } else {
             icon.style.display = "none";
-        };
+        }
     });
-};
+}
 
 function addTag() {
     const tagsContainer = document.querySelector(".tags-container");
@@ -333,25 +333,25 @@ function addTag() {
     span.classList.add("tag");
     span.innerText = "";
     tagsContainer.insertAdjacentElement("afterbegin", span)
-};
+}
 
 function changeTheme() {
     themeToggle.classList.toggle("toggle");
     document.documentElement.classList.toggle("dark-theme");
-    if (document.documentElement.classList[0] == "dark-theme") {
-        localStorage.setItem("darkTheme", true);
+    if (document.documentElement.classList[0] === "dark-theme") {
+        localStorage.setItem("darkTheme", "true");
     } else {
-        localStorage.setItem("darkTheme", false)
-    };
-};
+        localStorage.setItem("darkTheme", "false");
+    }
+}
 
 function restoreTheme() {
     let darkTheme;
     darkTheme = localStorage.getItem("darkTheme");
-    if (darkTheme == "true") {
+    if (darkTheme === "true") {
        changeTheme(); 
-    };
-};
+    }
+}
 
 function deleteTheNote() {
     if (confirm("Are You Sure To Delete This Note?")) {
@@ -363,10 +363,10 @@ function deleteTheNote() {
         catch {
             createNewNote();
         }
-    };
+    }
     updateNotesContainers();
     saveNote2LocalStorage();
-};
+}
 
 function saveNote2LocalStorage() {
     const notes = document.querySelectorAll(".note-card");
@@ -384,7 +384,7 @@ function saveNote2LocalStorage() {
         allNotes.push(note)
     });
     localStorage.setItem("cardNotes", JSON.stringify(allNotes));
-};
+}
 
 function restoreNotes() {
     const allNotes = JSON.parse(localStorage.getItem("cardNotes"));
@@ -394,7 +394,7 @@ function restoreNotes() {
         });
     } else {
         createNewNote();
-    };
+    }
     updateNotesContainers();
     updateEvents();
-};
+}

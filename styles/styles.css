@@ -391,13 +391,15 @@ aside {
 }
 
 .mark-text {
-    margin-right: .5em;
+    margin-left: .5em;
 }
 
 .main-header {
     display: flex;
     align-items: center;
     position: relative;
+    padding-bottom: .25em;
+    border-bottom: 1px solid var(--dark-gray);
 }
 
 .main-title {
@@ -578,7 +580,7 @@ textarea:focus {
     }
 
     #marked {
-        display: relative;
+        position: relative;
     }
 }
 
