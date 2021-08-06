@@ -41,6 +41,10 @@ addTagBtn.onclick = () => addTag();
 const themeToggle = document.getElementById("theme-toggle");
 themeToggle.onclick = () => changeTheme();
 
+document.addEventListener("keyup", (e) => {
+    if (e.target.localName === "body" && e.key === "Delete") deleteTheNote();
+}); 
+
 const deleteNote = document.getElementById("delete-note");
 deleteNote.onclick = () => deleteTheNote();
 
