@@ -132,6 +132,7 @@ function openNote() {
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
     tagsWrapper.innerHTML = this.children[3].children[0].innerHTML;
+    updateEvents();
 }
 
 function updateNoteTitle() {
@@ -349,7 +350,7 @@ function addTag() {
 }
 
 function deleteTag(e) {
-    const activeNoteTags = document.querySelectorAll(".note-card.active .tags .tag");
+    const activeNoteTags = document.querySelectorAll(".note-card.active .tag");
     if (e.layerX > e.target.offsetWidth - 25 && e.target.parentElement.classList.contains("tags-wrapper")) {
         activeNoteTags.forEach(tag => {
             if (tag.innerText === e.target.innerText) tag.remove();
