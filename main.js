@@ -72,6 +72,9 @@ function updateDate() {
 }
 
 function updateEvents() {
+    const tags = document.querySelectorAll(".tag");
+    tags.forEach(tag => tag.addEventListener("click", deleteTag));
+
     const pinBtns = document.querySelectorAll(".pin-toggle");
     pinBtns.forEach(pinBtn => pinBtn.addEventListener("click", pinNote));
 
@@ -121,12 +124,14 @@ function openNote() {
     if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()}
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
+    const tagsWrapper = document.querySelector(".tags-wrapper");
     noteCards.forEach(card => card.classList.remove("active"));
     this.classList.add("active");
     textAreaInput.value = this.children[2].innerText;
     iconTitle.classList = this.children[1].children[0].classList;
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
+    tagsWrapper.innerHTML = this.children[3].children[0].innerHTML;
 }
 
 function updateNoteTitle() {
@@ -183,7 +188,7 @@ function createNewNote(obj) {
         title = "Untitled Note";
         icon = ["las", "la-sticky-note"];
         text = "";
-        date = "Last edit: Just now";
+        date = "Created: " + getCurrentTime().split(":").slice(1).join(":");
         tags = "";
         color = "";
         pinned = "other-container";
@@ -192,9 +197,9 @@ function createNewNote(obj) {
         icon = obj.icon;
         text = obj.text;
         date = obj.date;
-        tags = obj.tags; 
         color = obj.color;
         pinned = obj.pinned;
+        tags = obj.tags;
     }
 
     const noteCard = document.createElement("div");
@@ -206,9 +211,7 @@ function createNewNote(obj) {
                             </div>
                             <p class="card-text">${text}</p>
                             <div class="info-container">
-                                <div class="tags">
-                                ${tags}
-                                </div>
+                                <div class="tags">${tags}</div>
                                 <div class="date-container">
                                     <h6 class="card-date">${date}</h6>
                                 </div>
@@ -235,7 +238,7 @@ function createNewNote(obj) {
 
 function getCurrentTime() {
     const currentDate = new Date();
-    return `Last edit ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${String(currentDate.getHours()).padStart(2, "0")}:${String(currentDate.getMinutes()).padStart(2, "0")}` 
+    return `Last edit: ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()} at ${String(currentDate.getHours()).padStart(2, "0")}:${String(currentDate.getMinutes()).padStart(2, "0")}`
 }
 
 function createRipple(e) {
@@ -332,11 +335,29 @@ function filterIcons() {
 }
 
 function addTag() {
-    const tagsContainer = document.querySelector(".tags-container");
+    const tagsWrapper = document.querySelector(".tags-wrapper");
+    const newTag = prompt("Enter Tag Name: ");
+    const activeNote = document.querySelector(".note-card.active .tags");
+    if (!newTag) return;
     const span = document.createElement("span");
     span.classList.add("tag");
-    span.innerText = "";
-    tagsContainer.insertAdjacentElement("afterbegin", span)
+    span.innerText = newTag;
+    tagsWrapper.insertAdjacentElement("afterbegin", span);
+    activeNote.insertAdjacentElement("afterbegin", span.cloneNode(true));
+    updateEvents();
+    saveNote2LocalStorage();
+}
+
+function deleteTag(e) {
+    const activeNoteTags = document.querySelectorAll(".note-card.active .tags .tag");
+    if (e.layerX > e.target.offsetWidth - 25 && e.target.parentElement.classList.contains("tags-wrapper")) {
+        activeNoteTags.forEach(tag => {
+            if (tag.innerText === e.target.innerText) tag.remove();
+        })
+        e.target.remove()
+        updateEvents()
+        saveNote2LocalStorage();
+    }
 }
 
 function changeTheme() {
@@ -374,7 +395,7 @@ function deleteTheNote() {
 
 function saveNote2LocalStorage() {
     const notes = document.querySelectorAll(".note-card");
-    let allNotes = []; 
+    let allNotes = [];
     notes.forEach((note) => {
         note = {
             title: note.querySelector(".card-title").innerText,
@@ -383,7 +404,7 @@ function saveNote2LocalStorage() {
             date: note.querySelector(".card-date").innerText,
             color: note.style.backgroundColor,
             pinned: note.parentElement.className,
-            tags: "",
+            tags: note.querySelector(".tags").innerHTML,
         };
         allNotes.push(note)
     });
