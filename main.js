@@ -53,14 +53,12 @@ deleteNote.onclick = () => deleteTheNote();
 
 const noteColor = document.getElementById("note-color");
 const noteColorsContainer = document.querySelector(".colors");
-noteColor.onmouseenter = () => {
-    noteColorsContainer.style.display = "flex";
-    document.documentElement.addEventListener("click", hideColorsContainer);
-
-    function hideColorsContainer(e) {
-        if (e.target.classList[1] === "la-palette") return;
-        noteColorsContainer.style.display = "none";
-    }
+noteColor.onclick = () => {
+    noteColorsContainer.classList.toggle("hidden");
+    document.documentElement.addEventListener("click", (e) => {
+        if (e.target.classList[1] === "la-palette") return
+        noteColorsContainer.classList.add("hidden")
+    });
 
     const colors = document.querySelectorAll(".colors span");
     colors.forEach(color => color.addEventListener("click", (e) => {
@@ -171,6 +169,7 @@ function  splitView() {
     if (textView.classList.contains("hidden")) {
        textView.classList.remove("hidden");
        markedBtn.classList.add("hidden");
+
        textView.innerHTML = marked(textAreaInput.value);
        textAreaInput.addEventListener("input", () => {
            textView.innerHTML = marked(textAreaInput.value);

@@ -473,7 +473,7 @@ textarea,
 }
 
 .text-view {
-    overflow-y: auto;
+    overflow: hidden auto;
 }
 
 textarea:focus {
@@ -517,10 +517,10 @@ textarea:focus {
 }
 
 .colors {
-    display: none;
+    display: flex;
     position: absolute;
     top: -1em;
-    left: -4em;
+    left: -1em;
     background-color: var(--gray);
     padding: .5em;
     border-radius: .25em;
@@ -564,11 +564,7 @@ textarea:focus {
 }
 
 .colors span:nth-child(6) {
-    background-color: hsla(0, 0%, 67%, 0.251);
-}
-
-.colors span:nth-child(7) {
-    background-color: var(--white-color);
+    background-color: hsla(0, 0%, 100%, .6);
 }
 
 .colors span:hover {
