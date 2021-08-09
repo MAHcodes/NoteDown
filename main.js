@@ -44,6 +44,9 @@ themeToggle.onclick = () => changeTheme();
 const splitViewBtn = document.getElementById("split-screen");
 splitViewBtn.onclick = () => splitView();
 
+const downloadBtn = document.getElementById("download");
+downloadBtn.onclick = () => downloadFile();
+
 document.addEventListener("keyup", (e) => {
     if (e.target.localName === "body" && e.key === "Delete") deleteTheNote();
 }); 
@@ -439,4 +442,16 @@ function restoreNotes() {
     }
     updateNotesContainers();
     updateEvents();
+}
+
+function downloadFile() {
+    const blob = new Blob([textAreaInput.value], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+    downloadBtn.href = url;
+    downloadBtn.download = `${inputTitle.value}.md`;
+    setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+        downloadBtn.removeAttribute("href");
+        downloadBtn.removeAttribute( "download");
+    }, 0);
 }

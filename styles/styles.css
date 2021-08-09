@@ -389,6 +389,7 @@ aside {
 
 #all-icons > i:hover,
 .edit-container > i:hover,
+#download > i:hover,
 .add-tag > i:hover {
     background-color: var(--dark-gray);
     opacity: 1;
@@ -495,6 +496,7 @@ textarea:focus {
     justify-content: center;
 }
 
+#download > i,
 .edit-container > i,
 .add-tag > i {
     font-size: 1.5em;
