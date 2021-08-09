@@ -41,8 +41,10 @@
                     <h5 id="main-date">Now</h5>
                 </div>
             </div>
-            <textarea id="text-input" placeholder="Take a note..."></textarea>
-            <div class="text-view hidden"></div>
+            <div class="text-wrapper">
+                <textarea id="text-input" placeholder="Take a note..."></textarea>
+                <div class="text-view hidden"></div>
+            </div>
             <div class="tools-container">
                 <div class="tags-container">
                     <div class="tags-wrapper"></div>
@@ -51,6 +53,7 @@
                     </span>
                 </div>
                 <div class="edit-container">
+                    <i class="las la-columns" id="split-screen" title="Split Markdown View"></i>
                     <i class="las la-palette" id="note-color" title="Change Note Color"></i>
                     <div class="colors">
                         <span title="Red" data-color="hsla(1, 83%, 63%, 0.15)"></span>

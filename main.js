@@ -41,6 +41,9 @@ addTagBtn.onclick = () => addTag();
 const themeToggle = document.getElementById("theme-toggle");
 themeToggle.onclick = () => changeTheme();
 
+const splitViewBtn = document.getElementById("split-screen");
+splitViewBtn.onclick = () => splitView();
+
 document.addEventListener("keyup", (e) => {
     if (e.target.localName === "body" && e.key === "Delete") deleteTheNote();
 }); 
@@ -67,9 +70,7 @@ noteColor.onmouseenter = () => {
     }));
 };
 
-function updateDate() {
-    dateTitle.innerText = getCurrentTime();
-}
+function updateDate() { dateTitle.innerText = getCurrentTime() }
 
 function updateEvents() {
     const tags = document.querySelectorAll(".tag");
@@ -122,6 +123,7 @@ function updateNotesContainers() {
 
 function openNote() {
     if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()}
+    if (markedBtn.classList.contains("hidden")) {splitView()};
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
     const tagsWrapper = document.querySelector(".tags-wrapper");
@@ -162,6 +164,21 @@ function updateNoteDate() {
     const cardDate = activeNote.querySelector(".date-container .card-date");
     cardDate.innerText = dateTitle.innerText;
     saveNote2LocalStorage();
+}
+
+function  splitView() {
+   const textView = document.querySelector(".text-view");
+    if (textView.classList.contains("hidden")) {
+       textView.classList.remove("hidden");
+       markedBtn.classList.add("hidden");
+       textView.innerHTML = marked(textAreaInput.value);
+       textAreaInput.addEventListener("input", () => {
+           textView.innerHTML = marked(textAreaInput.value);
+       });
+   } else {
+       textView.classList.add("hidden");
+       markedBtn.classList.remove("hidden");
+   }
 }
 
 function changeIcon() {

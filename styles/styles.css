@@ -90,6 +90,7 @@ aside {
     font-size: 1.125rem;
     transform: translateY(-50%) rotateY(180deg);
     opacity: .55;
+    color: var(--black);
 }
 .search > i:first-of-type {
     left: 13px;
@@ -396,16 +397,6 @@ aside {
 #all-icons > i:hover {
     transform: scale(1.15);
 }
-    
-#all-icons::before {
-    content: "";
-    border: 1rem solid;
-    border-color: transparent transparent var(--white);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -100%);
-}
 
 #icon-btn:hover #all-icons,
 #icon-btn:focus #all-icons {
@@ -464,11 +455,16 @@ input {
     color: var(--black);
 }
 
+.text-wrapper {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+}
+
 textarea,
 .text-view {
     width: 100%;
     resize: none;
-    flex-grow: 1;
     border: none;
     font-size: 1.0125rem;
     background-color: var(--white);
