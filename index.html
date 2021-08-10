@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@
             </div>
             <div class="text-wrapper">
                 <textarea id="text-input" placeholder="Take a note..."></textarea>
-                <div class="text-view hidden"></div>
+                <div id="vim" class="text-view hidden"></div>
             </div>
             <div class="tools-container">
                 <div class="tags-container">
@@ -62,11 +62,16 @@
                         <span title="Yellow" data-color="hsla(54, 100%, 67%, 0.15)"></span>
                         <span title="Purple" data-color="hsla(291, 47%, 51%, 0.15)"></span>
                         <span title="Green" data-color="hsla(123, 38%, 57%, 0.15)"></span>
-                        <span title="White" data-color="hsla(0, 0%, 100%, .4)"></span>
+                        <span title="White" data-color="var(--white-color)"></span>
                         <i class="las la-times"></i>
                     </div>
                     <i class="las la-adjust" id="theme-toggle" title="Change Theme Mode"></i>
                     <i class="las la-trash-alt" id="delete-note" title="Delete Note"></i>
+                    <i class="las la-ellipsis-v" title="More" id="more"></i>
+                    <div class="more">
+                        <a href="https://www.markdownguide.org/">Markdown Help</a>
+                        <a href="https://www.markdownguide.org/">Markdown Help</a>
+                    </div>
                 </div>
             </div>
         </section>

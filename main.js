@@ -71,6 +71,11 @@ noteColor.onclick = () => {
     }));
 };
 
+const more = document.getElementById("more");
+more.onclick = () => {
+    document.querySelector(".more").classList.toggle("hidden");
+};
+
 function updateDate() { dateTitle.innerText = getCurrentTime() }
 
 function updateEvents() {
@@ -90,6 +95,15 @@ function updateEvents() {
         pinnedContainer.style.flexGrow = "0";
     } else {
         pinnedContainer.style.flexGrow = "1";
+    };
+
+    if (document.querySelectorAll(".tags-wrapper .tag").length <= 0) {
+        const tagsWrap = document.querySelector(".tags-wrapper");
+        tagsWrap.innerHTML = "<h5 class='no-tags'>No Tags</h5>";
+    } else {
+        if (document.querySelector(".no-tags")) {
+            document.querySelector(".no-tags").remove();
+        }
     }
 }
 
@@ -445,7 +459,7 @@ function restoreNotes() {
 }
 
 function downloadFile() {
-    const blob = new Blob([textAreaInput.value], {type: "text/plain"});
+    const blob = new Blob([textAreaInput.value], {type: "text/markdown"});
     const url = URL.createObjectURL(blob);
     downloadBtn.href = url;
     downloadBtn.download = `${inputTitle.value}.md`;
