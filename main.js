@@ -11,8 +11,8 @@ window.onload = () => {
     updateEvents();
     restoreTheme();
     restoreNotes();
-    new Sortable(pinnedContainer);
-    new Sortable(otherContainer);
+    // new Sortable(pinnedContainer);
+    // new Sortable(otherContainer);
 };
 
 const markedBtn = document.getElementById("marked");
@@ -153,13 +153,12 @@ function openNote(e) {
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
     tagsWrapper.innerHTML = this.children[3].children[0].innerHTML;
-    document.querySelector("aside").classList.toggle("hide");
+    document.querySelector("aside").classList.add("hide");
     updateEvents();
 }
-window.onhashchange = closeNote;
+
 function closeNote() {
     document.querySelector("aside").classList.remove("hide");
-    console.log("ok");
 }
 
 function updateNoteTitle() {
