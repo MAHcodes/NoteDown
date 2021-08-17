@@ -384,12 +384,12 @@ aside {
 #all-icons > i,
 .tools-container i {
     cursor: pointer;
-    padding: .15em;
+    padding: .125em;
     color: var(--black);
     border-radius: 50%;
     margin: .1em;
     opacity: .75;
-    transition: 375ms;
+    transition: 300ms ease-in-out;
 }
 
 #all-icons > i:hover,
@@ -402,7 +402,7 @@ aside {
 }
 
 #all-icons > i:hover {
-    transform: scale(1.15);
+    transform: scale(1.075);
 }
 
 #icon-btn:hover #all-icons,
@@ -449,6 +449,10 @@ aside {
 
 #input-title:focus {
     outline: none;
+}
+
+.date-container {
+    margin-left: .5em;
 }
 
 #main-date,
@@ -628,12 +632,11 @@ textarea:focus {
         position: absolute;
         inset: 0;
         width: 100%;
-        transform: translateX(0);
-        transition: 500ms ease;
+        display: flex;
     }
 
     aside.hide {
-        transform: translateX(-100%);
+        display: none;
     }
 
     .mark-text {
@@ -643,6 +646,11 @@ textarea:focus {
     #main-date,
     #input-title {
         padding-right: 3.5rem;
+    }
+
+    .note-card > i {
+        opacity: 1;
+        transform: none;
     }
 
     .text-wrapper {

@@ -92,7 +92,6 @@ function updateEvents() {
     const noteCards = document.querySelectorAll(".note-card");
     noteCards.forEach(card => {
         card.addEventListener("click", openNote);
-        card.addEventListener("touchstart", openNote);
     });
 
     if (!pinnedContainer.classList.contains("hidden") && (!otherContainer.classList.contains("hidden"))) {
@@ -140,7 +139,8 @@ function updateNotesContainers() {
     }
 }
 
-function openNote() {
+function openNote(e) {
+    if (e.target.classList.contains("pin-toggle")) return
     if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()}
     if (markedBtn.classList.contains("hidden")) {splitView()};
     const noteCards = document.querySelectorAll(".note-card");
@@ -153,12 +153,13 @@ function openNote() {
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
     tagsWrapper.innerHTML = this.children[3].children[0].innerHTML;
-    document.querySelector("aside").classList.add("hide");
+    document.querySelector("aside").classList.toggle("hide");
     updateEvents();
 }
-
+window.onhashchange = closeNote;
 function closeNote() {
     document.querySelector("aside").classList.remove("hide");
+    console.log("ok");
 }
 
 function updateNoteTitle() {
