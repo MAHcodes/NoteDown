@@ -38,6 +38,9 @@ const dateTitle = document.getElementById("main-date");
 const addTagBtn = document.getElementById("add-tag");
 addTagBtn.onclick = () => addTag();
 
+const backBtn = document.getElementById("back");
+backBtn.onclick = () => closeNote();
+
 const themeToggle = document.getElementById("theme-toggle");
 themeToggle.onclick = () => changeTheme();
 

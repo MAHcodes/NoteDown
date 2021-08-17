@@ -656,6 +656,10 @@ textarea:focus {
     .text-wrapper {
         flex-direction: column;
     }
+
+    #back {
+        display: inline-block !important;
+    }
 }
 
 @keyframes show {
