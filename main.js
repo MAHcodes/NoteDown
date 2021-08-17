@@ -276,9 +276,9 @@ function createNewNote(obj) {
     }
     updateEvents();
     try {
-        pinnedContainer.firstElementChild.click();
-    } catch {
         otherContainer.firstElementChild.click();
+    } catch {
+        pinnedContainer.firstElementChild.click();
     }
     saveNote2LocalStorage();
 }
