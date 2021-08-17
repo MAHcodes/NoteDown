@@ -60,7 +60,7 @@ noteColor.onclick = () => {
     noteColorsContainer.classList.toggle("hidden");
     document.documentElement.addEventListener("click", (e) => {
         if (e.target.classList[1] === "la-palette") return
-        noteColorsContainer.classList.add("hidden")
+        noteColorsContainer.classList.add("hidden");
     });
 
     const colors = document.querySelectorAll(".colors span");
@@ -74,6 +74,10 @@ noteColor.onclick = () => {
 const more = document.getElementById("more");
 more.onclick = () => {
     document.querySelector(".more").classList.toggle("hidden");
+    document.documentElement.addEventListener("click", (e) => {
+        if (e.target.classList[1] === "la-ellipsis-v") return
+        document.querySelector(".more").classList.add("hidden");
+    })
 };
 
 function updateDate() { dateTitle.innerText = getCurrentTime() }
@@ -95,7 +99,7 @@ function updateEvents() {
         pinnedContainer.style.flexGrow = "0";
     } else {
         pinnedContainer.style.flexGrow = "1";
-    };
+    }
 
     if (document.querySelectorAll(".tags-wrapper .tag").length <= 0) {
         const tagsWrap = document.querySelector(".tags-wrapper");
@@ -149,7 +153,12 @@ function openNote() {
     inputTitle.value = this.children[1].children[1].innerText;
     dateTitle.innerText = this.children[3].children[1].firstElementChild.innerText;
     tagsWrapper.innerHTML = this.children[3].children[0].innerHTML;
+    document.querySelector("aside").classList.add("hide");
     updateEvents();
+}
+
+function closeNote() {
+    document.querySelector("aside").classList.remove("hide");
 }
 
 function updateNoteTitle() {
@@ -223,7 +232,7 @@ function createNewNote(obj) {
         icon = ["las", "la-sticky-note"];
         text = "";
         date = "Created: " + getCurrentTime().split(":").slice(1).join(":");
-        tags = "";
+        tags = [];
         color = "";
         pinned = "other-container";
     } else {
@@ -245,11 +254,12 @@ function createNewNote(obj) {
                             </div>
                             <p class="card-text">${text}</p>
                             <div class="info-container">
-                                <div class="tags">${tags}</div>
+                                <div class="tags"></div>
                                 <div class="date-container">
                                     <h6 class="card-date">${date}</h6>
                                 </div>
                             </div>`;
+    tags.forEach(tag => noteCard.querySelector(".tags").insertAdjacentHTML("afterbegin", `<span class="tag">${tag}</span>`));
     noteCard.style.backgroundColor = color;
 
     if (pinned === "other-container") {
@@ -386,11 +396,16 @@ function deleteTag(e) {
     const activeNoteTags = document.querySelectorAll(".note-card.active .tag");
     if (e.layerX > e.target.offsetWidth - 25 && e.target.parentElement.classList.contains("tags-wrapper")) {
         activeNoteTags.forEach(tag => {
-            if (tag.innerText === e.target.innerText) tag.remove();
-        })
-        e.target.remove()
-        updateEvents()
-        saveNote2LocalStorage();
+            if (tag.innerText === e.target.innerText) {
+                tag.classList.add("fadeout");
+                tag.addEventListener("transitionend", () => {
+                    tag.remove()
+                    saveNote2LocalStorage();
+                });
+            }
+        });
+        e.target.remove();
+        updateEvents();
     }
 }
 
@@ -431,6 +446,9 @@ function saveNote2LocalStorage() {
     const notes = document.querySelectorAll(".note-card");
     let allNotes = [];
     notes.forEach((note) => {
+        let tags = new Array;
+        let tagNotes = note.querySelectorAll(".tag");
+        tagNotes.forEach(tag => tags.push(tag.innerText));
         note = {
             title: note.querySelector(".card-title").innerText,
             text: note.querySelector(".card-text").innerHTML,
@@ -438,7 +456,7 @@ function saveNote2LocalStorage() {
             date: note.querySelector(".card-date").innerText,
             color: note.style.backgroundColor,
             pinned: note.parentElement.className,
-            tags: note.querySelector(".tags").innerHTML,
+            tags: tags,
         };
         allNotes.push(note)
     });

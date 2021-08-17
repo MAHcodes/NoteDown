@@ -5,7 +5,7 @@
 
 :root {
     --white: hsl(212.7, 100%, 96.7%);
-   --light-gray: hsl(218.3, 100%, 92.9%); // hsl(212.7, 70%, 92.7%);
+   --light-gray: hsl(218.3, 40%, 90%); /* hsl(212.7, 70%, 92.7%); */
     --dark-gray: hsl(0, 0%, 90%);
     --black: hsl(0, 0%, 10%);
     --main-blue: hsl(210, 79%, 46%);
@@ -227,9 +227,14 @@ aside {
    padding: .1em .5em;
    border: 1px solid var(--gray);
    opacity: .8;
-   transition: opacity 200ms, padding 250ms ease-in-out;
+   transition: opacity 250ms, padding 250ms ease-in-out, transform 300ms;
    position: relative;
-    display: inline-block;
+   display: inline-block;
+}
+
+.tag.fadeout {
+    opacity: 0;
+    transform: scale(.25);
 }
 
 .note-card .tag + .tag {
@@ -360,8 +365,8 @@ aside {
 }
 
 #all-icons {
-    width: 22rem;
-    height: 30rem;
+    width: 65vw;
+    height: 60vh;
     padding: 1rem;
     background-color: var(--light-gray);
     position: absolute;
@@ -384,14 +389,15 @@ aside {
     border-radius: 50%;
     margin: .1em;
     opacity: .75;
-    transition: 250ms;
+    transition: 375ms;
 }
 
 #all-icons > i:hover,
 .edit-container > i:hover,
 #download > i:hover,
 .add-tag > i:hover {
-    background-color: var(--dark-gray);
+    color: var(--white);
+    background-color: var(--black);
     opacity: 1;
 }
 
@@ -460,6 +466,11 @@ input {
     flex-grow: 1;
     display: flex;
     overflow: hidden;
+}
+
+#text-input, 
+.text-view {
+    flex: 1;
 }
 
 textarea,
@@ -591,6 +602,7 @@ textarea:focus {
     opacity: .9;
     transform: translate(0, -100%);
     padding: .25em;
+    border-radius: .3em;
 }
 
 .more a {
@@ -611,15 +623,17 @@ textarea:focus {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     aside {
         position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
+        inset: 0;
         width: 100%;
-        /* transform: translateX(-100%); */
-        transition: 500ms;
+        transform: translateX(0);
+        transition: 500ms ease;
+    }
+
+    aside.hide {
+        transform: translateX(-100%);
     }
 
     .mark-text {
@@ -631,8 +645,8 @@ textarea:focus {
         padding-right: 3.5rem;
     }
 
-    #marked {
-        position: relative;
+    .text-wrapper {
+        flex-direction: column;
     }
 }
 
