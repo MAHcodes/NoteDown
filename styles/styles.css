@@ -30,7 +30,7 @@ html {
     color: var(--black);
 }
 
-html, body { height: 100% }
+html, body { min-height: 100% }
 
 * {
     margin: 0;
@@ -46,7 +46,7 @@ html, body { height: 100% }
 
 .container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: space-between;
     align-items: stretch;
 }
