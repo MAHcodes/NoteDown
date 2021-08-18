@@ -11,7 +11,16 @@ window.onload = () => {
     changeIcon();
     updateEvents();
     restoreNotes();
+    adjustvh();
 };
+
+window.addEventListener("resize", adjustvh);
+function adjustvh() {
+    document.documentElement.style.minHeight = window.innerHeight + "px";
+    document.querySelector("aside").style.minHeight = window.innerHeight + "px";
+    document.querySelector(".container").style.minHeight = window.innerHeight + "px";
+    console.log(document.querySelector(".container").style.minHeight);
+}
 
 const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
