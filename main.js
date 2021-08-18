@@ -12,8 +12,6 @@ window.onload = () => {
     updateEvents();
     restoreNotes();
     document.documentElement.style.minHeight = window.innerHeight + "px";
-    document.querySelector(".container").style.minHeight = window.innerHeight + "px";
-    document.querySelector("aside").style.minHeight = window.innerHeight + "px";
 };
 
 const markedBtn = document.getElementById("marked");
