@@ -233,11 +233,6 @@ aside {
    display: inline-block;
 }
 
-.tag.fadeout {
-    opacity: 0;
-    transform: scale(.25);
-}
-
 .note-card .tag + .tag {
     margin-left: .25em;
 }
@@ -666,6 +661,20 @@ textarea:focus {
     #back {
         display: inline-block !important;
     }
+    /* 
+    .tools-container {
+        align-items: center;
+        position: relative;
+    }
+    .edit-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        right: .75em;
+        top: -1em;
+        transform: translateY(-100%);
+    }
+    */
 }
 
 @keyframes show {

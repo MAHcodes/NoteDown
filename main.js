@@ -7,12 +7,10 @@ const addBtn = document.getElementById("add");
 addBtn.addEventListener("click", createRipple);
 
 window.onload = () => {
+    restoreTheme();
     changeIcon();
     updateEvents();
-    restoreTheme();
     restoreNotes();
-    // new Sortable(pinnedContainer);
-    // new Sortable(otherContainer);
 };
 
 const markedBtn = document.getElementById("marked");
@@ -400,16 +398,13 @@ function deleteTag(e) {
     if (e.layerX > e.target.offsetWidth - 25 && e.target.parentElement.classList.contains("tags-wrapper")) {
         activeNoteTags.forEach(tag => {
             if (tag.innerText === e.target.innerText) {
-                tag.classList.add("fadeout");
-                tag.addEventListener("transitionend", () => {
-                    tag.remove()
-                    saveNote2LocalStorage();
-                });
+                tag.remove()
+                saveNote2LocalStorage();
             }
         });
         e.target.remove();
         updateEvents();
-    }
+    };
 }
 
 function changeTheme() {
