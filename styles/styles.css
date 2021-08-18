@@ -12,6 +12,7 @@
     --gray: hsl(0, 0%, 43.5%);
     --white-color: hsla(0, 0%, 100%, .8);
     --sec-blue: hsl(255, 12%, 100%);
+    --vh: 100vh;
 }
 
 html.dark-theme {
@@ -30,7 +31,7 @@ html {
     color: var(--black);
 }
 
-html, body { min-height: 100% }
+html, body { min-height: var(--vh) }
 
 * {
     margin: 0;
@@ -46,7 +47,7 @@ html, body { min-height: 100% }
 
 .container {
     display: flex;
-    min-height: 100vh;
+    min-height: inherit;
     justify-content: space-between;
     align-items: stretch;
     overflow: hidden;
@@ -60,7 +61,7 @@ aside {
     border-right: .075em solid var(--dark-gray);
     background-color: var(--light-gray);
     padding: 1rem;
-    height: 100vh;
+    min-height: inherit;
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -321,7 +322,7 @@ aside {
     padding: 1rem;
     background-color: var(--white);
     position: relative;
-    max-height: 100vh;
+    max-height: 100%;
 }
 
 #marked {

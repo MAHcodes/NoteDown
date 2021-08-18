@@ -14,12 +14,10 @@ window.onload = () => {
     adjustvh();
 };
 
-window.addEventListener("resize", adjustvh);
+window.onresize = () => adjustvh();
+
 function adjustvh() {
-    document.documentElement.style.minHeight = window.innerHeight + "px";
-    document.querySelector("aside").style.minHeight = window.innerHeight + "px";
-    document.querySelector(".container").style.minHeight = window.innerHeight + "px";
-    console.log(document.querySelector(".container").style.minHeight);
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
 }
 
 const markedBtn = document.getElementById("marked");
@@ -56,6 +54,14 @@ splitViewBtn.onclick = () => splitView();
 
 const downloadBtn = document.getElementById("download");
 downloadBtn.onclick = () => downloadFile();
+
+const clearDataBtn = document.getElementById("clear-data");
+clearDataBtn.onclick = () => {
+    if (confirm("Clear Site Data?")) {
+        localStorage.clear();
+        location.reload();
+    };
+};
 
 document.addEventListener("keyup", (e) => {
     if (e.target.localName === "body" && e.key === "Delete") deleteTheNote();
