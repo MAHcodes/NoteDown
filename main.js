@@ -412,10 +412,10 @@ function changeTheme() {
     document.documentElement.classList.toggle("dark-theme");
     if (document.documentElement.classList[0] === "dark-theme") {
         localStorage.setItem("darkTheme", "true");
-        document.getElementById("meta-theme").setAttribute("name", "#15141c");
+        document.getElementById("meta-theme").setAttribute("content", "#15141c");
     } else {
         localStorage.setItem("darkTheme", "false");
-        document.getElementById("meta-theme").setAttribute("name", "#dbe3f0");
+        document.getElementById("meta-theme").setAttribute("content", "#dbe3f0");
     }
 }
 
