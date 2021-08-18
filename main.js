@@ -11,6 +11,7 @@ window.onload = () => {
     changeIcon();
     updateEvents();
     restoreNotes();
+    document.querySelector(".container").style.minHeight = window.innerHeight;
 };
 
 const markedBtn = document.getElementById("marked");
