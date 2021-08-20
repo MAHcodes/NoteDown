@@ -37,6 +37,8 @@ inputTitle.onchange = () => updateDate();
 const textAreaInput = document.getElementById("text-input");
 textAreaInput.onblur = () => updateNoteText();
 textAreaInput.onchange = () => updateDate();
+// textAreaInput.onscroll = () => debounce(() => console.log("ok"), 10);
+textAreaInput.addEventListener("scroll", debounce(() => scrollView(), 100))
 
 const dateTitle = document.getElementById("main-date");
 
@@ -422,6 +424,22 @@ function deleteTag(e) {
     };
 }
 
+function scrollView() {
+    const textView = document.querySelector(".text-view");
+    const scrollAvg = textAreaInput.scrollTop / textAreaInput.scrollHeight;
+    textView.scrollTo(0, scrollAvg * textView.scrollHeight);
+}
+
+function debounce(func, timeout = 50){
+    let timeoutID;
+    return function(...args) {
+        if (timeoutID) clearTimeout(timeoutID)
+        timeoutID = setTimeout(() => {
+            func(...args);
+        }, timeout)
+    };
+}
+
 function changeTheme() {
     themeToggle.classList.toggle("toggle");
     document.documentElement.classList.toggle("dark-theme");
@@ -461,7 +479,7 @@ function saveNote2LocalStorage() {
     const notes = document.querySelectorAll(".note-card");
     let allNotes = [];
     notes.forEach((note) => {
-        let tags = new Array;
+        let tags = [];
         let tagNotes = note.querySelectorAll(".tag");
         tagNotes.forEach(tag => tags.push(tag.innerText));
         note = {
@@ -485,7 +503,15 @@ function restoreNotes() {
             createNewNote(note);
         });
     } else {
-        createNewNote();
+        createNewNote({
+            title: "Markdown Cheat Sheet",
+            text:  "# Markdown Cheat Sheet<br><br>Thanks for visiting [The Markdown Guide](https://www.markdownguide.org)!<br><br>This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax) and [extended syntax](https://www.markdownguide.org/extended-syntax).<br><br>## Basic Syntax<br><br>These are the elements outlined in John Gruber’s original design document. All Markdown applications support these elements.<br><br>### Heading<br><br># H1<br>## H2<br>### H3<br><br>### Bold<br><br>**bold text**<br><br>### Italic<br><br>*italicized text*<br><br>### Blockquote<br><br>&gt; blockquote<br><br>### Ordered List<br><br>1. First item<br>2. Second item<br>3. Third item<br><br>### Unordered List<br><br>- First item<br>- Second item<br>- Third item<br><br>### Code<br><br>`code`<br><br>### Horizontal Rule<br><br>---<br><br>### Link<br><br>[Markdown Guide](https://www.markdownguide.org)<br><br>### Image<br><br>![alt text](https://www.markdownguide.org/assets/images/tux.png)<br><br>## Extended Syntax<br><br>These elements extend the basic syntax by adding additional features. Not all Markdown applications support these elements.<br><br>### Table<br><br>| Syntax | Description |<br>| ----------- | ----------- |<br>| Header | Title |<br>| Paragraph | Text |<br><br>### Fenced Code Block<br><br>```<br>{<br>  \"firstName\": \"John\",<br>  \"lastName\": \"Smith\",<br>  \"age\": 25<br>}<br>```<br><br>### Footnote<br><br>Here's a sentence with a footnote. [^1]<br><br>[^1]: This is the footnote.<br><br>### Heading ID<br><br>### My Great Heading {#custom-id}<br><br>### Definition List<br><br>term<br>: definition<br><br>### Strikethrough<br><br>~~The world is flat.~~<br><br>### Task List<br><br>- [x] Write the press release<br>- [ ] Update the website<br>- [ ] Contact the media",
+            icon: ["lab", "la-markdown"],
+            date: "",
+            color: "hsla(199, 98%, 48%, 0.15)",
+            pinned: "pinned-container",
+            tags: ["Markdown", "Cheat Sheet"],
+        });
     }
     updateNotesContainers();
     updateEvents();

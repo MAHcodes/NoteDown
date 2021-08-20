@@ -389,7 +389,7 @@ aside {
 #all-icons > i,
 .tools-container i {
     cursor: pointer;
-    padding: .125em;
+    padding: .15em;
     color: var(--black);
     border-radius: 50%;
     margin: .1em;
@@ -401,9 +401,8 @@ aside {
 .edit-container > i:hover,
 #download > i:hover,
 .add-tag > i:hover {
-    color: var(--white);
-    background-color: var(--black);
     opacity: 1;
+    box-shadow: 0 0 .6em -.3em var(--black);
 }
 
 #all-icons > i:hover {
@@ -496,6 +495,7 @@ textarea,
 .text-view {
     overflow: hidden auto;
     max-height: 100%;
+    scroll-behavior: smooth;
 }
 
 textarea:focus {
