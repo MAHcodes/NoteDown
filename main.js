@@ -20,12 +20,12 @@ async function registerSW() {
         try {
             await navigator.serviceWorker.register("./sw.js")
         } catch(e) {
-            console.error("SW registration failed");
+            console.error("sw registration failed");
         }
     }
 }
 
-window.onresize = () => adjustvh();
+window.addEventListener("resize", debounce(adjustvh, 250));
 
 function adjustvh() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
@@ -35,10 +35,10 @@ const markedBtn = document.getElementById("marked");
 markedBtn.onclick = () => toggleView();
 
 const searchInput = document.getElementById("search");
-searchInput.oninput = () => filterNotes();
+searchInput.onkeyup = () => filterNotes();
 
 const searchIcon = document.getElementById("search-icons");
-searchIcon.oninput = () => filterIcons();
+searchIcon.onkeyup = () => filterIcons();
 
 const inputTitle = document.getElementById("input-title");
 inputTitle.onfocus = () => inputTitle.setSelectionRange(0, inputTitle.value.length);
@@ -48,7 +48,7 @@ inputTitle.onchange = () => updateDate();
 const textAreaInput = document.getElementById("text-input");
 textAreaInput.onblur = () => updateNoteText();
 textAreaInput.onchange = () => updateDate();
-textAreaInput.addEventListener("scroll", debounce(() => scrollView(), 50))
+textAreaInput.addEventListener("scroll", debounce(scrollView, 50))
 
 const dateTitle = document.getElementById("main-date");
 
@@ -225,7 +225,7 @@ function  splitView() {
        markedBtn.classList.add("hidden");
 
        textView.innerHTML = marked(textAreaInput.value);
-       textAreaInput.addEventListener("input", () => {
+       textAreaInput.addEventListener("keyup", () => {
            textView.innerHTML = marked(textAreaInput.value);
        });
    } else {

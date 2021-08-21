@@ -395,6 +395,8 @@ aside {
     margin: .1em;
     opacity: .75;
     transition: 300ms ease-in-out;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #all-icons > i:hover,
