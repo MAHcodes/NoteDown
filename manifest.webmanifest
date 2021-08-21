@@ -3,7 +3,7 @@
   "short_name": "NoteDown",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fff",
+  "background_color": "#eef6ff",
   "description": "A simple note taking app.",
    "icons": [{
     "src": "images/logo512.png",
