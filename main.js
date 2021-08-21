@@ -433,6 +433,7 @@ function debounce(func, timeout = 50){
     return function(...args) {
         if (timeoutID) clearTimeout(timeoutID)
         timeoutID = setTimeout(() => {
+            func(...args)
         }, timeout)
     };
 }

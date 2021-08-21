@@ -625,6 +625,11 @@ textarea:focus {
     text-decoration: none;
     font-size: .75rem;
     padding: .5em;
+    transition: transform 100ms ease-in-out;
+}
+
+.more a:hover {
+    transform: scale(1.035)
 }
 
 .more a + a {
