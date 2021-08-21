@@ -668,20 +668,10 @@ textarea:focus {
     #back {
         display: inline-block !important;
     }
-    /* 
-    .tools-container {
-        align-items: center;
-        position: relative;
+
+    #split-screen {
+        transform: rotateZ(90deg);
     }
-    .edit-container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        right: .75em;
-        top: -1em;
-        transform: translateY(-100%);
-    }
-    */
 }
 
 @keyframes show {

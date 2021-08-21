@@ -37,8 +37,7 @@ inputTitle.onchange = () => updateDate();
 const textAreaInput = document.getElementById("text-input");
 textAreaInput.onblur = () => updateNoteText();
 textAreaInput.onchange = () => updateDate();
-// textAreaInput.onscroll = () => debounce(() => console.log("ok"), 10);
-textAreaInput.addEventListener("scroll", debounce(() => scrollView(), 100))
+textAreaInput.addEventListener("scroll", debounce(() => scrollView(), 50))
 
 const dateTitle = document.getElementById("main-date");
 
@@ -62,7 +61,7 @@ clearDataBtn.onclick = () => {
     if (confirm("Clear Site Data?")) {
         localStorage.clear();
         location.reload();
-    };
+    }
 };
 
 document.addEventListener("keyup", (e) => {
@@ -160,7 +159,7 @@ function updateNotesContainers() {
 function openNote(e) {
     if (e.target.classList.contains("pin-toggle")) return
     if (markedBtn.children[0].classList[1] === "la-edit") {markedBtn.click()}
-    if (markedBtn.classList.contains("hidden")) {splitView()};
+    if (markedBtn.classList.contains("hidden")) {splitView()}
     const noteCards = document.querySelectorAll(".note-card");
     const iconTitle = document.querySelector("#icon-btn > i");
     const tagsWrapper = document.querySelector(".tags-wrapper");
@@ -412,7 +411,7 @@ function addTag() {
 
 function deleteTag(e) {
     const activeNoteTags = document.querySelectorAll(".note-card.active .tag");
-    if (e.layerX > e.target.offsetWidth - 25 && e.target.parentElement.classList.contains("tags-wrapper")) {
+    if (e.layerX > e.target.offsetWidth - e.target.offsetHeight && e.target.parentElement.classList.contains("tags-wrapper")) {
         activeNoteTags.forEach(tag => {
             if (tag.innerText === e.target.innerText) {
                 tag.remove()
@@ -421,13 +420,12 @@ function deleteTag(e) {
         });
         e.target.remove();
         updateEvents();
-    };
+    }
 }
 
 function scrollView() {
     const textView = document.querySelector(".text-view");
-    const scrollAvg = textAreaInput.scrollTop / textAreaInput.scrollHeight;
-    textView.scrollTo(0, scrollAvg * textView.scrollHeight);
+    textView.scrollTo(0, (textAreaInput.scrollTop / textAreaInput.scrollHeight) * textView.scrollHeight);
 }
 
 function debounce(func, timeout = 50){
@@ -435,7 +433,6 @@ function debounce(func, timeout = 50){
     return function(...args) {
         if (timeoutID) clearTimeout(timeoutID)
         timeoutID = setTimeout(() => {
-            func(...args);
         }, timeout)
     };
 }
