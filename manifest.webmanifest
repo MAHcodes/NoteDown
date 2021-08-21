@@ -1,0 +1,17 @@
+{
+  "name": "NoteDown",
+  "short_name": "NoteDown",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A simple note taking app.",
+   "icons": [{
+    "src": "images/logo512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }, {
+    "src": "images/logo192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

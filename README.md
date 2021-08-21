@@ -8,10 +8,8 @@ NoteDown is an open source note-taking app to capture your ideas with an easy an
 - [x] Change note icon with [Line Awesome](https://icons8.com/line-awesome).
 - [x] Dark / Light theme.
 - [x] Search for notes.
-- [x] Sortable notes.
 - [x] Save to local strorage.
 - [x] Mobile responsive.
-- [ ] ~Todo Lists.~ 
 
 ---
 ## Please consider:
