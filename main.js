@@ -455,9 +455,11 @@ function changeTheme() {
     if (document.documentElement.classList[0] === "dark-theme") {
         localStorage.setItem("darkTheme", "true");
         document.getElementById("meta-theme").setAttribute("content", "#15141c");
+        document.getElementById("ms-theme").setAttribute("content", "#15141c");
     } else {
         localStorage.setItem("darkTheme", "false");
         document.getElementById("meta-theme").setAttribute("content", "#dbe3f0");
+        document.getElementById("ms-theme").setAttribute("content", "#dbe3f0");
     }
 }
 
