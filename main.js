@@ -466,9 +466,11 @@ function changeTheme() {
 function restoreTheme() {
     let darkTheme;
     darkTheme = localStorage.getItem("darkTheme");
-    if (darkTheme === "true") {
-       changeTheme(); 
-    }
+    if (darkTheme) {
+        if (darkTheme === "true" ) changeTheme(); 
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            changeTheme();
+        }
 }
 
 function deleteTheNote() {
