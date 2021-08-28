@@ -270,7 +270,7 @@ aside {
     justify-content: center;
     font-size: 1rem;
     cursor: pointer;
-    transition: opacity 250ms ease-in-out 100ms;
+    transition: opacity 250ms ease-in-out 150ms;
 }
 
 .tags-container .tag:hover:before {
@@ -335,7 +335,7 @@ aside {
 #marked {
     position: absolute;
     top: 50%;
-    right: 0rem;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -494,6 +494,28 @@ textarea,
     background-color: var(--white);
     padding: 1.5rem;
     color: var(--black);
+}
+
+.notes-wrapper,
+textarea,
+.text-view,
+#all-icons {
+    scrollbar-color: var(--gray) var(--light-gray);
+}
+
+.notes-wrapper::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+.text-view::-webkit-scrollbar,
+#all-icons::-webkit-scrollbar {
+    background-color: var(--sec-blue);
+    width: .5rem;
+}
+
+.notes-wrapper::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+.text-view::-webkit-scrollbar-thumb,
+#all-icons::-webkit-scrollbar-thumb {
+    background-color: var(--gray);
 }
 
 .text-view {
