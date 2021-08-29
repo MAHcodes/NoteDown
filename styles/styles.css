@@ -507,14 +507,27 @@ textarea,
 textarea::-webkit-scrollbar,
 .text-view::-webkit-scrollbar,
 #all-icons::-webkit-scrollbar {
-    background-color: var(--sec-blue);
     width: .5rem;
+}
+
+.notes-wrapper::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+.text-view::-webkit-scrollbar-track,
+#all-icons::-webkit-scrollbar-track {
+    background-color: var(--sec-blue);
 }
 
 .notes-wrapper::-webkit-scrollbar-thumb,
 textarea::-webkit-scrollbar-thumb,
 .text-view::-webkit-scrollbar-thumb,
 #all-icons::-webkit-scrollbar-thumb {
+    background-color: #9999;
+}
+
+.notes-wrapper::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover,
+.text-view::-webkit-scrollbar-thumb:hover,
+#all-icons::-webkit-scrollbar-thumb:hover {
     background-color: var(--gray);
 }
 
