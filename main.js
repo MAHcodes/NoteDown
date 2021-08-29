@@ -13,6 +13,7 @@ window.onload = () => {
     restoreNotes();
     adjustvh();
     registerSW();
+    console.clear();
 };
 
 async function registerSW() {
@@ -26,6 +27,10 @@ async function registerSW() {
 }
 
 window.addEventListener("resize", debounce(adjustvh, 250));
+
+window.oncontextmenu = (e) => {
+    e.preventDefault();
+}
 
 function adjustvh() {
     document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
@@ -75,9 +80,16 @@ clearDataBtn.onclick = () => {
     }
 };
 
-document.addEventListener("keyup", (e) => {
+document.addEventListener("keyup", e => {
     if (e.target.localName === "body" && e.key === "Delete") deleteTheNote();
+
 }); 
+
+document.onkeydown = e => {
+    if((e.keyCode == 123) || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85)) {
+        return false; 
+    }
+}
 
 const deleteNote = document.getElementById("delete-note");
 deleteNote.onclick = () => deleteTheNote();
@@ -523,7 +535,7 @@ function restoreNotes() {
             date: "",
             color: "hsla(199, 98%, 48%, 0.15)",
             pinned: "pinned-container",
-            tags: ["Markdown", "Cheat Sheet"],
+            tags: ["Markdown"],
         });
     }
     updateNotesContainers();
