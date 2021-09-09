@@ -57,12 +57,15 @@ html {
     display: none !important;
 }
 
+.flex {
+    display: flex;
+}
+
 aside {
     border-right: .075em solid var(--dark-gray);
     background-color: var(--light-gray);
     padding: 1rem;
     height: var(--vh);
-    display: flex;
     flex: 1;
     flex-direction: column;
     width: 20%;
@@ -156,6 +159,7 @@ aside {
     padding: 1em;
     cursor: pointer;
     transition: 500ms;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .note-card + .note-card {
@@ -182,7 +186,6 @@ aside {
     transition: 300ms;
     opacity: 0;
     transform: scale(1.1) translateX(5px) rotateZ(25deg);
-    user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -200,7 +203,6 @@ aside {
 }
 
 .note-card .title {
-    display: flex;
     align-items: center;
     justify-content: flex-start;
 }
@@ -324,7 +326,6 @@ aside {
 .main {
     flex: 4;
     width: 100%;
-    display: flex;
     flex-direction: column;
     padding: 1rem;
     background-color: var(--white);
@@ -336,7 +337,6 @@ aside {
     position: absolute;
     top: 50%;
     right: 0;
-    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 20;
@@ -436,7 +436,6 @@ aside {
 }
 
 .main-header {
-    display: flex;
     align-items: center;
     position: relative;
     padding-bottom: .25em;
@@ -476,7 +475,6 @@ input {
 
 .text-wrapper {
     flex-grow: 1;
-    display: flex;
     overflow: hidden;
 }
 
@@ -543,7 +541,6 @@ textarea:focus {
 }
 
 .tools-container {
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1rem 0 ;
@@ -580,7 +577,6 @@ textarea:focus {
 }
 
 .colors {
-    display: flex;
     position: absolute;
     top: -1em;
     left: -1em;
@@ -650,7 +646,6 @@ textarea:focus {
     position: absolute;
     top: -.75em;
     right: 0;
-    display: flex;
     flex-direction: column;
     background-color: var(--black);
     opacity: .9;
@@ -688,7 +683,6 @@ textarea:focus {
         position: absolute;
         inset: 0;
         width: 100%;
-        display: flex;
     }
 
     aside.hide,

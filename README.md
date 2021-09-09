@@ -4,11 +4,12 @@ NoteDown is an open source note-taking app to capture your ideas with an easy an
 
 ---
 ## Features: 
-- [x] Markdown edit / view.
-- [x] Change note icon with [Line Awesome](https://icons8.com/line-awesome).
-- [x] Dark / Light theme.
+- [x] CRUD notes.
+- [x] Markdown view / edit.
 - [x] Search for notes.
+- [x] Light / Dark theme.
 - [x] Save to local strorage.
+- [x] Change note icon with [Line Awesome](https://icons8.com/line-awesome).
 - [x] Mobile responsive.
 - [x] Progressive Web App.
 - [ ] Organize and filter notes by tags.
@@ -20,7 +21,9 @@ This app is still under development stages. You can try the [Live Demo](https://
 ---
 
 ## Contact Me:
-[![](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mhmdalihsen102@gmail.com) 
-[![](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/MhmdAliHsen)
-[![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mhmd-ali-hsen-66b0671b7/)
-[![](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/404595695195258880/)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mhmdalihsen102@gmail.com) 
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/MhmdAliHsen)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mhmd-ali-hsen-66b0671b7/)
+[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discordapp.com/users/404595695195258880/)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/mhmdalihsen)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/mhmdali.hsen)

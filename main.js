@@ -288,7 +288,7 @@ function createNewNote(obj) {
     const noteCard = document.createElement("div");
     noteCard.classList.add("note-card");
     noteCard.innerHTML = `<i class="las la-thumbtack pin-toggle"></i>
-                            <div class="title">
+                            <div class="title flex">
                                 <i class="${icon[0]} ${icon[1]}"></i>
                                 <h3 class="card-title">${title}</h3>
                             </div>

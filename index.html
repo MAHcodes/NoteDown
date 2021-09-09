@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="container">
-        <aside>
+        <aside class="flex">
             <div class="search">
                 <input type="text" id="search" placeholder="Search note..." autocomplete="off">
                 <i class="las la-search"></i>
@@ -38,9 +38,9 @@
                 <button id="add">Add Note</button>
             </div>
         </aside>
-        <section class="main">
-            <div class="main-header">
-            <button id="marked" title="View MarkDown"><i class="las la-eye"></i><span class="mark-text">MarkDown</span></button>
+        <section class="main flex">
+            <div class="main-header flex">
+            <button class="flex" id="marked" title="View MarkDown"><i class="las la-eye"></i><span class="mark-text">MarkDown</span></button>
                 <button id="icon-btn">
                     <i class="las la-sticky-note"></i>
                     <div id="all-icons">
@@ -56,11 +56,11 @@
                     <h5 id="main-date">Now</h5>
                 </div>
             </div>
-            <div class="text-wrapper">
+            <div class="text-wrapper flex">
                 <textarea id="text-input" placeholder="Take a note..."></textarea>
                 <div class="text-view hidden"></div>
             </div>
-            <div class="tools-container">
+            <div class="tools-container flex">
                 <div class="tags-container">
                     <div class="tags-wrapper"></div>
                     <span class="add-tag">
@@ -72,7 +72,7 @@
                     <i class="las la-columns" id="split-screen" title="Split Markdown View"></i>
                     <a title="Save Note File" id="download"><i class="las la-file-download"></i></a>
                     <i class="las la-palette" id="note-color" title="Change Note Color"></i>
-                    <div class="colors hidden">
+                    <div class="colors hidden flex">
                         <span title="Red" data-color="hsla(1, 83%, 63%, 0.15)"></span>
                         <span title="Blue" data-color="hsla(199, 98%, 48%, 0.15)"></span>
                         <span title="Yellow" data-color="hsla(54, 100%, 67%, 0.15)"></span>
@@ -84,7 +84,7 @@
                     <i class="las la-adjust" id="theme-toggle" title="Change Theme Mode"></i>
                     <i class="las la-trash-alt" id="delete-note" title="Delete Note"></i>
                     <i class="las la-ellipsis-v" title="More" id="more"></i>
-                    <div class="more hidden">
+                    <div class="more hidden flex">
                         <a id="clear-data">Clear&nbsp;Site&nbsp;Data</a>
                         <a href="https://www.markdownguide.org/" target="_blank" rel="noopener noreferrer">Markdown&nbsp;Help</a>
                         <a href="https://github.com/mhmdali102/NoteDown" target="_blank" rel="noopener noreferrer">Source&nbsp;Code</a>
