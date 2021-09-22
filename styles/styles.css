@@ -27,7 +27,8 @@ html.dark-theme {
 
 html {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(14px, calc(1vw + 1vh), 18px);
+    font-size: 16px;
+    font-size: clamp(14px, calc(1vw + 1vh), 17px);
     color: var(--black);
     background-color: var(--white);
 }
@@ -55,6 +56,62 @@ html {
 
 .hidden {
     display: none !important;
+}
+
+.delete-confirm {
+    padding: 1em 1.5em;
+    position: absolute;
+    inset: 0;
+    width: max-content;
+    height: max-content;
+    z-index: 9999999;
+    background-color: hsl(218.3, 40%, 90%);
+    margin: auto;
+    color: hsl(246, 17.2%, 11.4%);
+    border-radius: .25rem;
+    text-align: right;
+    box-shadow: 0 0 4em -2em hsla(0, 0%, 0%, 70%);
+}
+
+.delete-confirm p {
+    text-align: left;
+    margin-bottom: 1.25em;
+}
+
+.delete-confirm > p > span{
+    font-weight: bold;
+}
+
+.delete-confirm > button {
+    border: none;
+    padding: 1em 1.25em;
+    border-radius: .25em;
+    cursor: pointer;
+}
+
+.delete-confirm > button:focus {
+    outline: none;
+    text-decoration: underline;
+}
+
+.delete-confirm > button:first-of-type:hover {
+    filter: brightness(.7);
+}
+
+.delete-confirm > button:last-of-type:hover {
+    filter: brightness(1.2);
+}
+
+.delete-confirm > button:first-of-type {
+    color: hsla(0, 70%, 43.1%, 0.84);
+    margin-right: .5em;
+    background-color: hsla(0, 100%, 50%, 0.078);
+}
+
+.delete-confirm > button:last-of-type {
+    color: white;
+    background-color: var(--main-blue);
+    font-weight: bold;
 }
 
 .flex {
@@ -396,7 +453,7 @@ aside {
     border-radius: 50%;
     margin: .1em;
     opacity: .75;
-    transition: 300ms ease-in-out;
+    transition: 200ms ease-in-out;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -638,14 +695,14 @@ textarea:focus {
     transform: rotateZ(360deg);
 }
 
-#more {
-    position: relative;
-}
+/* #more { */
+    /* position: relative; */
+/* } */
 
-.more {
+.more,
+.save-options {
     position: absolute;
     top: -.75em;
-    right: 0;
     flex-direction: column;
     background-color: var(--black);
     opacity: .9;
@@ -654,7 +711,18 @@ textarea:focus {
     border-radius: .3em;
 }
 
-.more a {
+.more {
+    right: 0;
+    transform: translate(0, -100%);
+}
+
+.save-options {
+    left: 0;
+    transform: translate(-25%, -100%);
+}
+
+.more a,
+.save-options a {
     cursor: pointer;
     color: var(--white);
     text-decoration: none;
@@ -663,11 +731,13 @@ textarea:focus {
     transition: transform 100ms ease-in-out;
 }
 
-.more a:hover {
+.more a:hover,
+.save-options a:hover {
     transform: scale(1.035)
 }
 
-.more a + a {
+.more a + a,
+.save-options a + a {
     border-top: 1px solid var(--dark-gray);
 }
 
@@ -710,6 +780,10 @@ textarea:focus {
 
     #split-screen {
         transform: rotateZ(90deg);
+    }
+
+    .tags-wrapper {
+        display: none;
     }
 }
 

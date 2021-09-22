@@ -70,14 +70,41 @@ const splitViewBtn = document.getElementById("split-screen");
 splitViewBtn.onclick = () => splitView();
 
 const downloadBtn = document.getElementById("download");
-downloadBtn.onclick = () => downloadFile();
+downloadBtn.onclick = () => {
+    const saveOptions = document.querySelector(".save-options");
+    saveOptions.classList.toggle("hidden");
+    document.documentElement.addEventListener("click", (e) => {
+        if (e.target.classList[1] === "la-file-download") return;
+        saveOptions.classList.add("hidden");
+    });
+}
+
+const saveHTML = document.getElementById("save-html");
+saveHTML.onclick = function() {
+    downloadFile(this, "html", "text/html", marked(textAreaInput.value));
+}
+
+const saveMarkdown = document.getElementById("save-markdown");
+saveMarkdown.onclick = function() {
+    downloadFile(this, "md", "text/markdown", textAreaInput.value);
+}
 
 const clearDataBtn = document.getElementById("clear-data");
 clearDataBtn.onclick = () => {
-    if (confirm("Clear Site Data?")) {
+    const deleteConfirm = document.querySelector(".delete-confirm");
+    deleteConfirm.classList.remove("hidden");
+    document.getElementById("confirm-text").innerHTML = `Are you sure to <span>clear site data</span>?`
+    document.querySelector(".container").style.filter = "brightness(0.4) blur(4px)";
+    const okBtn = document.getElementById("ok");
+    const cancelBtn = document.getElementById("cancel");
+    okBtn.onclick = () => {
         localStorage.clear();
         location.reload();
-    }
+    };
+    cancelBtn.onclick = () => {
+        document.querySelector(".container").style.filter = "";
+        deleteConfirm.classList.add("hidden");
+    };
 };
 
 document.addEventListener("keyup", e => {
@@ -85,11 +112,11 @@ document.addEventListener("keyup", e => {
 
 }); 
 
-document.onkeydown = e => {
-    if((e.keyCode == 123) || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85)) {
-        return false; 
-    }
-}
+// document.onkeydown = e => {
+//     if((e.keyCode == 123) || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.shiftKey && e.keyCode === 74) || (e.ctrlKey && e.keyCode === 85)) {
+//         return false;
+//     }
+// }
 
 const deleteNote = document.getElementById("delete-note");
 deleteNote.onclick = () => deleteTheNote();
@@ -486,18 +513,28 @@ function restoreTheme() {
 }
 
 function deleteTheNote() {
-    if (confirm("Are You Sure To Delete This Note?")) {
-        const activeNote = document.querySelector(".note-card.active");
-        activeNote.remove();
+    const deleteConfirm = document.querySelector(".delete-confirm");
+    deleteConfirm.classList.remove("hidden");
+    document.getElementById("confirm-text").innerHTML = `Are you sure to delete (<span>${inputTitle.value}</span>) ?`
+    document.querySelector(".container").style.filter = "brightness(0.4) blur(4px)";
+    const okBtn = document.getElementById("ok");
+    const cancelBtn = document.getElementById("cancel");
+    okBtn.onclick = () => {
+        document.querySelector(".note-card.active").remove();
         try {
             document.querySelector(".note-card").click();
         } 
         catch {
             createNewNote();
         }
-    }
-    updateNotesContainers();
-    saveNote2LocalStorage();
+        cancelBtn.click();
+        updateNotesContainers();
+        saveNote2LocalStorage();
+    };
+    cancelBtn.onclick = () => {
+        document.querySelector(".container").style.filter = "";
+        deleteConfirm.classList.add("hidden");
+    };
 }
 
 function saveNote2LocalStorage() {
@@ -542,14 +579,14 @@ function restoreNotes() {
     updateEvents();
 }
 
-function downloadFile() {
-    const blob = new Blob([textAreaInput.value], {type: "text/markdown"});
+function downloadFile(e, ext, type, data) {
+    const blob = new Blob([data], {type});
     const url = URL.createObjectURL(blob);
-    downloadBtn.href = url;
-    downloadBtn.download = `${inputTitle.value}.md`;
+    e.href = url;
+    e.download = `${inputTitle.value}.${ext}`;
     setTimeout(() => {
         window.URL.revokeObjectURL(url);
-        downloadBtn.removeAttribute("href");
-        downloadBtn.removeAttribute( "download");
+        e.removeAttribute("href");
+        e.removeAttribute("download");
     }, 0);
 }

@@ -23,6 +23,11 @@
     <base target="blank">
 </head>
 <body>
+    <div class="delete-confirm hidden">
+        <p id="confirm-text"></p>
+        <button id="ok">Delete</button>
+        <button id="cancel">Cancel</button>
+    </div>
     <div class="container">
         <aside class="flex">
             <div class="search">
@@ -64,13 +69,17 @@
                 <div class="tags-container">
                     <div class="tags-wrapper"></div>
                     <span class="add-tag">
-                        <i class="las la-plus-circle" id="add-tag" title="Add Tag"></i>
+                        <i class="las la-tag" id="add-tag" title="Add Tag"></i>
                     </span>
                 </div>
                 <div class="edit-container">
                     <i class="las la-undo hidden" id="back" title="Go Back To Notes"></i>
                     <i class="las la-columns" id="split-screen" title="Split Markdown View"></i>
                     <a title="Save Note File" id="download"><i class="las la-file-download"></i></a>
+                    <div class="save-options flex hidden">
+                        <a id="save-html">Save as HTML</a>
+                        <a id="save-markdown">Save as MarkDown</a>
+                    </div>
                     <i class="las la-palette" id="note-color" title="Change Note Color"></i>
                     <div class="colors hidden flex">
                         <span title="Red" data-color="hsla(1, 83%, 63%, 0.15)"></span>
