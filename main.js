@@ -94,8 +94,9 @@ clearDataBtn.onclick = () => {
     const deleteConfirm = document.querySelector(".delete-confirm");
     deleteConfirm.classList.remove("hidden");
     document.getElementById("confirm-text").innerHTML = `Are you sure to <span>clear site data</span>?`
-    document.querySelector(".container").style.filter = "brightness(0.4) blur(4px)";
+    document.querySelector(".container").style.filter = "brightness(0.3) blur(4px)";
     const okBtn = document.getElementById("ok");
+    okBtn.innerText = "Clear";
     const cancelBtn = document.getElementById("cancel");
     okBtn.onclick = () => {
         localStorage.clear();
@@ -516,8 +517,9 @@ function deleteTheNote() {
     const deleteConfirm = document.querySelector(".delete-confirm");
     deleteConfirm.classList.remove("hidden");
     document.getElementById("confirm-text").innerHTML = `Are you sure to delete (<span>${inputTitle.value}</span>) ?`
-    document.querySelector(".container").style.filter = "brightness(0.4) blur(4px)";
+    document.querySelector(".container").style.filter = "brightness(0.3) blur(4px)";
     const okBtn = document.getElementById("ok");
+    okBtn.innerText = "Delete";
     const cancelBtn = document.getElementById("cancel");
     okBtn.onclick = () => {
         document.querySelector(".note-card.active").remove();

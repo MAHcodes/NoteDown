@@ -63,6 +63,7 @@ html {
     position: absolute;
     inset: 0;
     width: max-content;
+    max-width: 75vw;
     height: max-content;
     z-index: 9999999;
     background-color: hsl(218.3, 40%, 90%);
