@@ -265,7 +265,6 @@ header nav ul img {
 }
 
 .features__media {
-  border: 1px solid red;
   justify-content: center;
 }
 
@@ -331,8 +330,11 @@ header nav ul img {
   text-decoration: underline;
 }
 
+.dark__img {
+  /* display: none */
+}
 .light__img {
-  display: none;
+  height: 0px;
 }
 
 @media only screen and (min-width: 600px) {
